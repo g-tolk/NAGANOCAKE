@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  devise_for :admins
+  devise_for :members
+
+
+
+  root to: "members#top"
   namespace :admins do
     get 'orders/index'
     get 'orders/show'
@@ -19,7 +26,7 @@ Rails.application.routes.draw do
     get 'products/show'
   end
   namespace :admins do
-    get 'top/top'
+    get '/' => "admins#top"
   end
   namespace :members do
     get 'shipping_addresses/index'
@@ -44,7 +51,6 @@ Rails.application.routes.draw do
     get 'products/index'
     get 'products/show'
   end
-  devise_for :admins
-  devise_for :members
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
