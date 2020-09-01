@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :members
 
 
+  get '/members/withdraw' => 'members#withdraw'
+
 
   root to: "members#top"
   namespace :admins do
