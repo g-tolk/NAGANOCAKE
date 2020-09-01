@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   devise_for :admins
   devise_for :members
 
+  get '/members/about' => 'members#about'
 
-  get '/members/withdraw' => 'members#withdraw'
+  get '/members/unsubscribe' => 'members#unsubscribe'
 
 
   root to: "members#top"
