@@ -20,7 +20,6 @@ Rails.application.routes.draw do
 
   get '/members/about' => 'members#about'
 
-  get '/members/unsubscribe' => 'members#unsubscribe'
 
 
   root to: "members#top"

@@ -18,8 +18,8 @@
         <nav class="nav member-after-login">
           <p>ようこそ、xxさん！</p>
             <ul>
-              <li><%= link_to 'マイページ', members_members_show_path(current_user), class: "col-xs-1 btn btn-default" %></li>
-              <li><%= link_to '商品一覧', members_products_index_path, class: "col-xs-1 btn btn-default" %></li>
+              <li><%= link_to 'マイページ', members_members_show_path(current_member), class: "col-xs-1 btn btn-default" %></li>
+              <li><%= link_to '商品一覧', members_products_index_path(current_member), class: "col-xs-1 btn btn-default" %></li>
               <li><%= link_to 'カート', members_cart_products_index_path(current_user), class: "col-xs-1 btn btn-default" %></li>
               <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete, class: "col-xs-1 btn btn-default" %></li>
             </ul>
@@ -29,26 +29,15 @@
           <ul>
              <li><%= link_to '商品一覧', admins_products_index_path, class: "col-xs-1 btn btn-default" %></li>
               <li><%= link_to '会員一覧', admins_members_index_path, class: "col-xs-1 btn btn-default" %></li>
-              <li><%= link_to '注文履歴一覧', admins_order_index_path(user), class: "col-xs-1 btn btn-default" %></li>
-               <li><%= link_to 'ジャンル一覧', admins_genres_index_path(user), class: "col-xs-1 btn btn-default" %></li>
+              <li><%= link_to '注文履歴一覧', admins_order_index_path, class: "col-xs-1 btn btn-default" %></li>
+               <li><%= link_to 'ジャンル一覧', admins_genres_index_path, class: "col-xs-1 btn btn-default" %></li>
               <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "col-xs-1 btn btn-default" %></li>
           </ul>
         </nav>
       <% else %>
         <nav class="nav member-before-login">
           <ul>
-            <li><%= link_to 'About', '/members/about'(user), class: "col-xs-1 btn btn-default" %></li>
-            <li><%= link_to '商品一覧', , class: "col-xs-1 btn btn-default" %></li>
-            <li><%= link_to '新規登録', /members/sign_up(user), class: "col-xs-1 btn btn-default" %></li>
-               <li><%= link_to 'ログイン', ここはmemberとadminで分ける必要がある(user), class: "col-xs-1 btn btn-default" %></li>
-          </ul>
-        </nav>
-        <nav class="nav admin-before-login">
-          <ul>
-            <li><%= link_to 'About', まだアクションを書いてないからURLない(user), class: "col-xs-1 btn btn-default" %></li>
-            <li><%= link_to '商品一覧', , class: "col-xs-1 btn btn-default" %></li>
-            <li><%= link_to '新規登録', /members/sign_up(user), class: "col-xs-1 btn btn-default" %></li>
-               <li><%= link_to 'ログイン', ここはmemberとadminで分ける必要がある(user), class: "col-xs-1 btn btn-default" %></li>
+
           </ul>
         </nav>
       <% end %>
