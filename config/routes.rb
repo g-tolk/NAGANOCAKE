@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   # devise_for :members
 
   get '/members/about' => 'members#about'
-  get '/members/withdraw' => 'members#withdraw'
+
 
 
   root to: "members#top"

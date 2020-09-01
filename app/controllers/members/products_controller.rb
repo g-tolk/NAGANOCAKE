@@ -3,6 +3,7 @@ class Members::ProductsController < ApplicationController
   end
 
   def about
+
   end
 
   def index
