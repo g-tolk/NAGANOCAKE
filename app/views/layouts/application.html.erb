@@ -13,7 +13,24 @@
     <header>
       <div class="logo">
       </div>
-      <div class="nav">
+      <div class="nav before-login">
+        <ul>
+          <li class="btn">About</li>
+          <li class="btn">商品一覧</li>
+          <li class="btn">新規登録</li>
+          <li class="btn">ログイン</li>
+        </ul>
+      </div>
+      <div class="nav member-after-login">
+        <p>ようこそ、xxさん！</p>
+        <ul>
+          <li class="btn">マイページ</li>
+          <li class="btn">商品一覧</li>
+          <li class="btn">カート</li>
+          <li class="btn">ログアウト</li>
+        </ul>
+      </div>
+      <div class="nav admin-after-login">
         <ul>
           <li class="btn">商品一覧</li>
           <li class="btn">会員一覧</li>
@@ -23,14 +40,12 @@
         </ul>
       </div>
       <div class="search">
-        <
       </div>
     </header>
     <div class="main">
       <%= yield %>
     </div>
     <div class="footer">
-
     </div>
   </body>
 </html>
