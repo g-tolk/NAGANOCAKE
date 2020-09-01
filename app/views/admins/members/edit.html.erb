@@ -1,2 +1,23 @@
-<h1>Admins::Members#edit</h1>
-<p>Find me in app/views/admins/members/edit.html.erb</p>
+<h1>　　さんの会員情報編集</h1>
+
+<%= form_for(@member, url: members_members_path) do |f| %>
+　<h4>会員ID</h4>
+　<%= @member.id %>
+  <h4>氏名</h4>
+  <%= f.text_field :family_name %>
+  <%= f.text_field :first_name %>
+  <h4>フリガナ</h4>
+  <%= f.text_field :kana_family_name %>
+  <%= f.text_field :kana_first_name %>
+  <h4>郵便番号</h4>
+  <%= f.text_field :postal_code %>
+  <h4>住所</h4>
+  <%= f.text_field :address %>
+  <h4>電話番号</h4>
+  <%=  %>
+  <h4>メールアドレス</h4>
+  <%= f.text_field :email %>
+  <h4>会員ステータス</h4>
+
+    <%= f.submit '変更を保存する' class: "btn btn-primary"%>
+<% end %>
