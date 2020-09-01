@@ -1,7 +1,22 @@
 Rails.application.routes.draw do
 
-  devise_for :admins
-  devise_for :members
+	#namespace :admins do
+      devise_for :admins, controllers: {
+      sessions: 'admins/sessions',
+      registrations: 'admins/registrations',
+      passwords: 'admins/passwords'
+    }
+  #end
+	#namespace :members do
+      devise_for :members, controllers: {
+      sessions: 'members/sessions',
+      registrations: 'members/registrations',
+      passwords: 'members/passwords'
+    }
+  #end
+
+  # devise_for :admins
+  # devise_for :members
 
   get '/members/about' => 'members#about'
 
