@@ -1,23 +1,25 @@
-<div class="col-xs-9">
-      <h2>商品一覧</h2>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>商品ID</th>
-            <th>商品名</th>
-            <th>税抜き価格</th>
-            <th>ジャンル</th>
-          </tr>
-        </thead>
+<div class="contianer">
+  <div class="row">
+    <h2>商品一覧</h2>
+     <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜き価格</th>
+          <th>ジャンル</th>
+        </tr>
+      </thead>
         <% @products.each do |product| %>
-        <tbody>
-          <tr>
-            <td></td>
-            <td><%= link_to product.name%></td>
-            <td><%= product.non_taxed_price %></td>
-            <td></td>
-          </tr>
-        </tbody>
+      <tbody>
+        <tr>
+          <td></td>
+          <td><%= link_to product.name%></td>
+          <td><%= product.non_taxed_price %></td>
+          <td><%= genres.name %></td>
+        </tr>
+      </tbody>
         <% end %>
       </table>
-    </div>
+  </div>
+</div>
