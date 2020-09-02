@@ -1,2 +1,48 @@
-<h1>Admins::Products#new</h1>
-<p>Find me in app/views/admins/products/new.html.erb</p>
+<div class="container">
+	<div class="row">
+		<h1>商品新規登録</h1>
+	</div>
+	<div class="row">
+		<%= form_for(@product) do |f| %>
+				<!-- エラーメッセージ表示-->
+					<% if @product.errors.any? %>
+						<div id="error_explanation">
+							<h3><%= @product.errors.count %>error prohibited this obj from being saved:</h3>
+								<% @product.errors.full_messages.each do |message| %>
+									<%= message %>
+								<% end %>
+						</div>
+					<% end %>
+				<!-- エラーメッセージ表示-->
+		<div class="field col-xs-6">
+			<span><%= f.attachment_field :profile_image %></span><br>
+
+		</div>
+		<div class="table col-xs-6">
+			<tr>
+				<th>商品名</th>
+				<th><%= f.text_field :name %></th>
+			</tr>
+			<tr>
+				<th>商品説明</th>
+				<th><%= f.text_area :introduction %></th>
+			</tr>
+			<tr>
+				<th>ジャンル</th>
+				<th></th>
+			</tr>
+			<tr>
+				<th>税抜価格</th>
+				<th><%= f.text_field :non_taxed_price %></th>
+			</tr>
+			<tr>
+				<th>販売ステータス</th>
+				<th></th>
+			</tr>
+		</div>
+		<div class="actions">
+			<%= f.submit class: "btn btn-primary col-xs-12"  %>
+		</div>
+		<% end %>
+	</div>
+</div>
