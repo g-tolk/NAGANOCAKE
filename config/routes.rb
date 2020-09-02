@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       passwords: 'member/passwords'
     }
 
-  root to: "member#top"
+  root to: "member/products#top"
 
   namespace :admin do
   	resources :orders, only: [:index,:show,:update]
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   end
 
   namespace :member,path:'' do
-  	resources :members, only: [:show,:edit,:update]
+  	resource :members, only: [:show,:edit,:update]
   	get '/members/unsubscribe' => 'members#unsubscribe'
   	patch '/members/withdraw' => 'members#withdraw'
   	resources :shipping_addresses, except: [:show,:new]
