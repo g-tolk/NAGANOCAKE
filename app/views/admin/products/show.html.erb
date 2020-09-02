@@ -1,2 +1,16 @@
-<h1>Admins::Products#show</h1>
-<p>Find me in app/views/admins/products/show.html.erb</p>
+<h3>商品詳細</h3>
+
+<%= attachment_image_tag products, :image %>
+
+<h5>商品名</h5>
+<%= member.name %>
+<h5>商品説明</h5>
+<%= member.introduction %>
+<h5>ジャンル</h5>
+<%= member.genre_id %>
+<h5>税込価格（税抜価格)</h5>
+<%= member.non_taxed_price %>
+<h5>販売ステータス</h5>
+<%= member.sale_status %>
+
+<%= link_to "編集する", edit_admin_product_path(@),class:"btn btn-primary" %>
