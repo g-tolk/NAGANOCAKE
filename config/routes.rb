@@ -1,72 +1,40 @@
 Rails.application.routes.draw do
 
-	#namespace :admins do
-      devise_for :admins, controllers: {
-      sessions: 'admins/sessions',
-      registrations: 'admins/registrations',
-      passwords: 'admins/passwords'
+      devise_for :admins,path:'admin', controllers: {
+      sessions: 'admin/sessions',
+      registrations: 'admin/registrations',
+      passwords: 'admin/passwords'
     }
-  #end
-	#namespace :members do
+
       devise_for :members, controllers: {
-      sessions: 'members/sessions',
-      registrations: 'members/registrations',
-      passwords: 'members/passwords'
+      sessions: 'member/sessions',
+      registrations: 'member/registrations',
+      passwords: 'member/passwords'
     }
-  #end
 
-  # devise_for :admins
-  # devise_for :members
+  root to: "member#top"
 
-  get '/members/about' => 'members#about'
+  namespace :admin do
+  	resources :orders, only: [:index,:show,:update]
+    resources :order_details, only: [:update]
+    resources :members, only: [:index,:show,:edit,:update]
+    resources :genres, only: [:index,:edit,:update,:create]
+    resources :products, except: [:destroy]
+    get '/' => "admin#top"
+  end
 
-
-
-  root to: "members#top"
-  namespace :admins do
-    get 'orders/index'
-    get 'orders/show'
-  end
-  namespace :admins do
-    get 'members/index'
-    get 'members/show'
-    get 'members/edit'
-  end
-  namespace :admins do
-    get 'genres/index'
-    get 'genres/edit'
-  end
-  namespace :admins do
-    get 'products/new'
-    get 'products/index'
-    get 'products/edit'
-    get 'products/show'
-  end
-  namespace :admins do
-    get '/' => "admins#top"
-  end
-  namespace :members do
-    get 'shipping_addresses/index'
-    get 'shipping_addresses/edit'
-  end
-  namespace :members do
-    get 'orders/new'
-    get 'orders/complete'
-    get 'orders/index'
-    get 'orders/show'
-  end
-  namespace :members do
-    get 'cart_products/index'
-  end
-  namespace :members do
-    get 'members/show'
-    get 'members/unsubscribe'
-    get 'members/edit'
-  end
-  namespace :members do
-    get 'products/top'
-    get 'products/index'
-    get 'products/show'
+  namespace :member,path:'' do
+  	resources :members, only: [:show,:edit,:update]
+  	get '/members/unsubscribe' => 'members#unsubscribe'
+  	patch '/members/withdraw' => 'members#withdraw'
+  	resources :shipping_addresses, except: [:show,:new]
+    resources :orders, only: [:show,:edit,:new,:create]
+    get 'orders/complete' => 'orders#complete'
+    resources :cart_products, only: [:index,:update,:create,:destroy]
+    delete 'cart_products/destroy_all'
+    resources :products, only: [:index,:show]
+    get 'products/top' => 'products#top'
+    get '/products/about' => 'products#about'
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
