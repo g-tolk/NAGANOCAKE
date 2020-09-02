@@ -18,27 +18,27 @@
         <nav class="nav member-after-login">
           <p>ようこそ、xxさん！</p>
             <ul>
-              <li><%= link_to 'マイページ', members_members_show_path(current_member), class: "col-xs-1 btn btn-default" %></li>
-              <li><%= link_to '商品一覧', members_products_index_path(current_member), class: "col-xs-1 btn btn-default" %></li>
-              <li><%= link_to 'カート', members_cart_products_index_path(current_user), class: "col-xs-1 btn btn-default" %></li>
+              <li><%= link_to 'マイページ', member_member_path(current_member), class: "col-xs-1 btn btn-default" %></li>
+              <li><%= link_to '商品一覧', member_products_path(current_member), class: "col-xs-1 btn btn-default" %></li>
+              <li><%= link_to 'カート', member_cart_products_path(current_user), class: "col-xs-1 btn btn-default" %></li>
               <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete, class: "col-xs-1 btn btn-default" %></li>
             </ul>
         </nav>
       <% elsif admin_signed_in? %>
         <nav class="nav admin-after-login">
           <ul>
-             <li><%= link_to '商品一覧', admins_products_index_path, class: "col-xs-1 btn btn-default" %></li>
-              <li><%= link_to '会員一覧', admins_members_index_path, class: "col-xs-1 btn btn-default" %></li>
-              <li><%= link_to '注文履歴一覧', admins_order_index_path, class: "col-xs-1 btn btn-default" %></li>
-               <li><%= link_to 'ジャンル一覧', admins_genres_index_path, class: "col-xs-1 btn btn-default" %></li>
+             <li><%= link_to '商品一覧', admin_products_path, class: "col-xs-1 btn btn-default" %></li>
+              <li><%= link_to '会員一覧', admin_members_path, class: "col-xs-1 btn btn-default" %></li>
+              <li><%= link_to '注文履歴一覧', admin_orders_path, class: "col-xs-1 btn btn-default" %></li>
+               <li><%= link_to 'ジャンル一覧', admin_genres_path, class: "col-xs-1 btn btn-default" %></li>
               <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "col-xs-1 btn btn-default" %></li>
           </ul>
         </nav>
       <% else %>
         <nav class="nav member-before-login">
           <ul>
-            <li><%= link_to 'About', members_about_path, class: "col-xs-1 btn btn-default" %></li>
-            <li><%= link_to '商品一覧', members_products_index_path, class: "col-xs-1 btn btn-default" %></li>
+            <li><%= link_to 'About', member_products_about_path, class: "col-xs-1 btn btn-default" %></li>
+            <li><%= link_to '商品一覧', member_products_path, class: "col-xs-1 btn btn-default" %></li>
             <li><%= link_to '新規登録', new_member_registration_path, class: "col-xs-1 btn btn-default" %></li>
             <li><%= link_to 'ログイン', new_member_session_path, class: "col-xs-1 btn btn-default" %></li>
           </ul>
