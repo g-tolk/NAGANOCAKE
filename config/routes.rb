@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :members, only: [:index,:show,:edit,:update]
     resources :genres, only: [:index,:edit,:update,:create]
     resources :products, except: [:destroy]
-    get '/' => "admin#top"
+    get '/' => "top#top"
   end
 
   namespace :member,path:'' do

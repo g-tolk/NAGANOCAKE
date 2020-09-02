@@ -4,19 +4,18 @@ class ApplicationController < ActionController::Base
 
   protected
   def after_sign_in_path_for(resource)
-    if resource == Admin
-      binding.pry
+    if resource == @admin
       admin_path
-    elsif resource == Member
-      member_members_path
+    elsif resource == @member
+      root_path
     end
   end
 
   def after_sign_out_path_for(resource)
-    if resource == Admin
-      destroy_admin_session_path
-    elsif resource == Member
-      destroy_member_session_path
+    if resource == :admin
+      root_path
+    elsif resource == :member
+      root_path
     end
   end
 
