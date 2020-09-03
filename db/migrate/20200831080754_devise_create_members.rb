@@ -36,8 +36,8 @@ class DeviseCreateMembers < ActiveRecord::Migration[5.2]
       t.string :first_name, null: false
       t.string :kana_family_name, null: false
       t.string :kana_first_name, null: false
-      t.string :telephone_numder
-      t.string :postal_code, null: false,default: "000-0000"
+      t.string :telephone_number, null: false
+      t.string :postal_code, null: false
       t.string :address, null: false
       t.boolean :is_withdeawal_status, null: false,default: true
 

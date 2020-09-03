@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_31_135853) do
+ActiveRecord::Schema.define(version: 2020_08_31_081954) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -49,13 +49,12 @@ ActiveRecord::Schema.define(version: 2020_08_31_135853) do
     t.string "first_name", null: false
     t.string "kana_family_name", null: false
     t.string "kana_first_name", null: false
-    t.string "telephone_numder"
-    t.string "postal_code", default: "000-0000", null: false
+    t.string "telephone_number", null: false
+    t.string "postal_code", null: false
     t.string "address", null: false
     t.boolean "is_withdeawal_status", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "telephone_number", default: "000-0000-0000", null: false
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
@@ -97,7 +96,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_135853) do
   create_table "shipping_addresses", force: :cascade do |t|
     t.integer "member_id", null: false
     t.string "name", null: false
-    t.string "postal_code", default: "000-0000", null: false
+    t.string "postal_code", null: false
     t.string "address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
