@@ -3,7 +3,7 @@
   <h3>ジャンル一覧・追加</h3>
 
   <p>ジャンル</p>
-  <%= form_for(@genre) do |f| %>
+  <%= form_for(@genre url: '/admin/genres') do |f| %>
   <%= f.text_field :name %>
   <label><%= f.radio_button :valid_status, "有効" %>有効</label>
   <label><%= f.radio_button :valid_status, "無効" %>無効</label>
