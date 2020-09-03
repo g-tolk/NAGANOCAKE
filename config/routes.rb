@@ -24,7 +24,8 @@ Rails.application.routes.draw do
   end
 
   namespace :member,path:'' do
-  	resource :members, only: [:show,:edit,:update]
+  	resources :members, only: [:edit,:update]
+    get '/members' => 'members#show'
   	get '/members/unsubscribe' => 'members#unsubscribe'
   	patch '/members/withdraw' => 'members#withdraw'
   	resources :shipping_addresses, except: [:show,:new]
