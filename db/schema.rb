@@ -25,16 +25,16 @@ ActiveRecord::Schema.define(version: 2020_08_31_135853) do
   end
 
   create_table "cart_products", force: :cascade do |t|
-    t.integer "member_id", null: false
-    t.integer "product_id", null: false
-    t.integer "quantity", null: false
+    t.integer "member_id"
+    t.integer "product_id"
+    t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "genres", force: :cascade do |t|
-    t.boolean "valid_status", default: true, null: false
-    t.string "name", null: false
+    t.boolean "valid_status"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -51,8 +51,6 @@ ActiveRecord::Schema.define(version: 2020_08_31_135853) do
     t.boolean "is_withdeawal_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "telophone_numder"
-    t.string "telephone_numder"
     t.string "family_name"
     t.string "first_name"
     t.string "kana_family_name"
