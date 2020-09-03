@@ -1,13 +1,15 @@
 class Member::MembersController < ApplicationController
   def show
-    @member = Member.find(params[:id])
+    @member = current_member
+    @members = Member.all
   end
 
   def unsubscribe
+  endexit
   end
 
   def edit
-    @member = Member.find(params[:id])
+    
   end
 
   def update
