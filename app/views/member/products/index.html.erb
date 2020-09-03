@@ -11,9 +11,8 @@
 
 
 <% @products.each do |product| %>
-  <div>
-    <%= attachment_image_tag product, :image, :fill, 200, 200, firmat: 'jpeg' %>
+
+    <%= attachment_image_tag(product, :image, :fill, 200, 200, fallback: "no-image-mini.jpg") %>
       <%= product.name%>
       <%= product.non_taxed_price%> * 0.8
-  </div>
 <% end %>

@@ -3,11 +3,12 @@ class Member::ProductsController < ApplicationController
   end
 
   def about
-
   end
 
   def index
+  @products = Product.all
   end
+
 
   def show
   end
