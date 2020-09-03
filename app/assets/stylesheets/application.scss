@@ -22,8 +22,18 @@ header {
 	backgroud-color: pink;
 	margin: 50px 20px;
 }
+nav1 ul li {
+	list-style: none;
+	display: inline-block;
+	}
 footer {
 	width: 100%;
 	height: 100px;
 	background-color: pink;
+}
+#error_explanation {
+    color: red;
+}
+.main {
+	margin-left: 50px
 }
