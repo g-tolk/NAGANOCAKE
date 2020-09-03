@@ -1,2 +1,19 @@
-<h1>Members::Products#index</h1>
-<p>Find me in app/views/members/products/index.html.erb</p>
+<h1>ジャンル検索</h1>
+
+<a href = "#">ケーキ<a>
+<a href = "#">焼き菓子<a>
+<a href = "#">プリン<a>
+<a href = "#">キャンデー<a>
+
+
+
+<h1>商品一覧（全X）</h1>
+
+
+<% @products.each do |product| %>
+  <div>
+    <%= attachment_image_tag product, :image, :fill, 200, 200, firmat: 'jpeg' %>
+      <%= product.name%>
+      <%= product.non_taxed_price%> * 0.8
+  </div>
+<% end %>
