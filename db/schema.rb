@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_135853) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "telephone_numder"
     t.string "postal_code"
     t.string "address"
     t.boolean "is_withdeawal_status"
@@ -54,8 +55,6 @@ ActiveRecord::Schema.define(version: 2020_08_31_135853) do
     t.string "first_name"
     t.string "kana_family_name"
     t.string "kana_first_name"
-    t.string "telophone_numder"
-    t.string "telephone_numder"
     t.string "telephone_number"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
