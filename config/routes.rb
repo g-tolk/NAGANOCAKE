@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   	get '/members/unsubscribe' => 'members#unsubscribe'
   	patch '/members/withdraw' => 'members#withdraw'
   	resources :shipping_addresses, except: [:show,:new]
-    resources :orders, only: [:show,:edit,:new,:create]
+    resources :orders, only: [:show,:edit,:new,:create,:index]
     get 'orders/complete' => 'orders#complete'
     resources :cart_products, only: [:index,:update,:create,:destroy]
     delete 'cart_products/destroy_all'

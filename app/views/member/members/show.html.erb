@@ -1,8 +1,8 @@
 <h1>マイページ</h1>
 
-<btn><span>登録情報</span><%= link_to "編集する", edit_member_member_path(@member.id), class: "btn btn-primary" %></btn>
+<btn><span>登録情報</span><%= link_to "編集する", edit_member_members_path(@member), class: "btn btn-primary" %></btn>    
 
-<btn><<%= link_to "パスワードを変更する",_path(@member.id), class: "btn btn-primary" %></btn>
+<%= link_to "パスワードを変更する", member_members_path(@member), class: "btn btn-primary" %>
 <table class="table">
   <thead>
     <tr>
@@ -15,17 +15,19 @@
     </tr>
   </thead>
   <tbody>
+    <% @members.each do |member| %>
     <tr>
-      <td><%= @member.family_name @member.first_name %></td>
-      <td><%= @member.kana_family_name @member.kana_first_name %></td>
-      <td><%= @member.postal_code %></td>
-      <td><%= @member.address %></td>
-      <td><%= @member.telephone_number %></td>
-      <td><%= @member.email %></td>
+      <td><%= member.family_name %> <%= member.first_name %></td>
+      <td><%= member.kana_family_name %> <%= member.kana_first_name %></td>
+      <td><%= member.postal_code %></td>
+      <td><%= member.address %></td>
+      <td><%= member.telephone_number %></td>
+      <td><%= member.email %></td>
     </tr>
+    <% end %>
   </tbody>
 </table>
 
 <btn><span>配送先</span><%= link_to "一覧を見る",member_shipping_addresses_path(@member), class: "btn btn-primary" %></btn>
 
-<btn><span>注文一覧</span><%= link_to "一覧を見る",, class: "btn btn-primary" %></btn>
+<btn><span>注文一覧</span><%= link_to "一覧を見る",member_orders_path(@member), class: "btn btn-primary" %></btn>
