@@ -5,16 +5,21 @@ class Member::MembersController < ApplicationController
   end
 
   def unsubscribe
-  endexit
   end
 
   def edit
-    
+    @member = Member.find(params[:id])
   end
 
   def update
-    @member.update(member_params)
+    @member = Member.find(params[:id])
+    if @member.update(member_params)
+      redirect_to member_members_path
+    else
+      render :edit
+    end
   end
+
 
   def withdraw
 
