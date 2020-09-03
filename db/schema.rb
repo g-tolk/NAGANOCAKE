@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 2020_08_31_081954) do
     t.boolean "is_withdeawal_status", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
