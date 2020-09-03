@@ -20,14 +20,14 @@ class Member::MembersController < ApplicationController
     end
   end
 
-
-  def withdraw
+  def withdrawl
 
   end
 
   private
 
   def member_params
-    params.require(:member).permit(:family_name, :first_name, :kana_family_name, :kana_first_name, :postal_code, :address, :telephone_number)
+    params.require(:member).permit(,:family_name, :first_name, :kana_family_name, :kana_first_name, :postal_code, :address, :telephone_number)
   end
+
 end
