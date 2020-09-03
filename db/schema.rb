@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_31_135853) do
+ActiveRecord::Schema.define(version: 2020_08_31_081954) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -45,60 +45,60 @@ ActiveRecord::Schema.define(version: 2020_08_31_135853) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "telephone_numder"
-    t.string "postal_code"
-    t.string "address"
-    t.boolean "is_withdeawal_status"
+    t.string "family_name", null: false
+    t.string "first_name", null: false
+    t.string "kana_family_name", null: false
+    t.string "kana_first_name", null: false
+    t.string "telephone_number", null: false
+    t.string "postal_code", null: false
+    t.string "address", null: false
+    t.boolean "is_withdeawal_status", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "family_name"
-    t.string "first_name"
-    t.string "kana_family_name"
-    t.string "kana_first_name"
-    t.string "telephone_number"
+
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
 
   create_table "order_products", force: :cascade do |t|
-    t.integer "order_id"
-    t.integer "product_id"
-    t.integer "quantity"
-    t.integer "non_taxed_price"
-    t.integer "product_status"
+    t.integer "order_id", null: false
+    t.integer "product_id", null: false
+    t.integer "quantity", null: false
+    t.integer "non_taxed_price", null: false
+    t.integer "product_status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "member_id"
-    t.integer "postage"
-    t.integer "payment_amount"
-    t.integer "payment_method"
-    t.integer "order_status"
-    t.string "receiver"
-    t.string "postal_code"
-    t.string "address"
+    t.integer "member_id", null: false
+    t.integer "postage", null: false
+    t.integer "payment_amount", null: false
+    t.integer "payment_method", null: false
+    t.integer "order_status", null: false
+    t.string "receiver", null: false
+    t.string "postal_code", null: false
+    t.string "address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "name"
-    t.text "introduction"
-    t.integer "genre_id"
-    t.integer "non_taxed_price"
-    t.string "image_id"
-    t.boolean "sale_status"
+    t.string "name", null: false
+    t.text "introduction", null: false
+    t.integer "genre_id", null: false
+    t.integer "non_taxed_price", null: false
+    t.string "image_id", null: false
+    t.boolean "sale_status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "shipping_addresses", force: :cascade do |t|
-    t.integer "member_id"
-    t.string "name"
-    t.string "postal_code"
-    t.string "address"
+    t.integer "member_id", null: false
+    t.string "name", null: false
+    t.string "postal_code", null: false
+    t.string "address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
