@@ -3,7 +3,7 @@
 		<h1>商品新規登録</h1>
 	</div>
 	<div class="row">
-		<%= form_for(@product) do |f| %>
+		<%= form_for(@product, url: admin_products_path) do |f| %>
 				<!-- エラーメッセージ表示-->
 					<% if @product.errors.any? %>
 						<div id="error_explanation">
@@ -15,7 +15,7 @@
 					<% end %>
 				<!-- エラーメッセージ表示-->
 		<div class="field col-xs-6">
-			<span><%= f.attachment_field :profile_image %></span><br>
+			<span><%= f.attachment_field :image %></span><br>
 
 		</div>
 		<div class="table col-xs-6">
@@ -27,21 +27,21 @@
 				<th>商品説明</th>
 				<th><%= f.text_area :introduction %></th>
 			</tr>
-			<tr>
+						<tr>
 				<th>ジャンル</th>
-				<th></th>
+				<th><%= f.select :genre_id, [["ケーキ",0],["プリン",1],["焼き菓子",2],["キャンディ",3]] %></th>
 			</tr>
 			<tr>
 				<th>税抜価格</th>
-				<th><%= f.text_field :non_taxed_price %></th>
+				<th><%= f.text_field :non_taxed_price %>円</th>
 			</tr>
 			<tr>
 				<th>販売ステータス</th>
-				<th></th>
+				<th><%= f.select :sale_status, [["販売中",0],["売り切れ",1]] %></th>
 			</tr>
 		</div>
 		<div class="actions">
-			<%= f.submit class: "btn btn-primary col-xs-12"  %>
+			<%= f.submit '新規登録', class: "btn btn-primary col-xs-6"  %>
 		</div>
 		<% end %>
 	</div>

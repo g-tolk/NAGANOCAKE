@@ -1,8 +1,20 @@
 <div class="container">
 
+
+
   <h3>ジャンル一覧・追加</h3>
     <p>ジャンル</p>
     <%= form_for(@genre, url: admin_genres_path) do |f| %>
+
+     <% if @genre.errors.any? %>
+            <div id="error_explanation">
+              <h3><%= @genre.errors.count %>error prohibited this obj from being saved:</h3>
+                <% @genre.errors.full_messages.each do |message| %>
+                  <%= message %>
+                <% end %>
+            </div>
+          <% end %>
+
     <%= f.text_field :name %>
     <label><%= f.radio_button :valid_status,"good",{:checked => true} %>有効</label>
     <label><%= f.radio_button :valid_status,"bad" %>無効</label>
