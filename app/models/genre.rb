@@ -3,5 +3,4 @@ class Genre < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
-  enum valid_status: { good: true , bad: false}
 end

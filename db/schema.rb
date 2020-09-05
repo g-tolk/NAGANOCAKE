@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_081954) do
     t.integer "genre_id", null: false
     t.integer "non_taxed_price", null: false
     t.string "image_id"
-    t.boolean "sale_status", null: false
+    t.boolean "sale_status", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
