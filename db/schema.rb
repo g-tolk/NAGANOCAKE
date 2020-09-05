@@ -44,4 +44,47 @@ ActiveRecord::Schema.define(version: 2020_08_31_080811) do
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
 
+  create_table "order_products", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "product_id", null: false
+    t.integer "quantity", null: false
+    t.integer "non_taxed_price", null: false
+    t.integer "product_status", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "member_id", null: false
+    t.integer "postage", null: false
+    t.integer "payment_amount", null: false
+    t.integer "payment_method", null: false
+    t.integer "order_status", null: false
+    t.string "receiver", null: false
+    t.string "postal_code", null: false
+    t.string "address", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "introduction", null: false
+    t.integer "genre_id", null: false
+    t.integer "non_taxed_price", null: false
+    t.string "image_id"
+    t.boolean "sale_status", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shipping_addresses", force: :cascade do |t|
+    t.integer "member_id", null: false
+    t.string "name", null: false
+    t.string "postal_code", null: false
+    t.string "address", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end

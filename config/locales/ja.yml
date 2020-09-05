@@ -1,6 +1,0 @@
-ja:
-  enums:
-    genre:
-      valid_status:
-        good: 有効
-        bad: 無効
