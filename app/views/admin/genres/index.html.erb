@@ -1,15 +1,14 @@
 <div class="container">
 
   <h3>ジャンル一覧・追加</h3>
+    <p>ジャンル</p>
+    <%= form_for(@genre, url: admin_genres_path) do |f| %>
+    <%= f.text_field :name %>
+    <label><%= f.radio_button :valid_status,"true",{:checked => true} %>有効</label>
+    <label><%= f.radio_button :valid_status,"false" %>無効</label>
+    <%= f.submit '追加' %>
 
-  <p>ジャンル</p>
-  <%= form_for(@genre, url: admin_genres_path) do |f| %>
-  <%= f.text_field :name %>
-  <label><%= f.radio_button :valid_status, "true",{:checked => true} %>有効</label>
-  <label><%= f.radio_button :valid_status, "false" %>無効</label>
-  <%= f.submit '追加' %>
-
-  <% end %>
+    <% end %>
 
   <table class="table table-hover">
       <thead>
