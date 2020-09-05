@@ -27,7 +27,7 @@ class Member::ShippingAddressesController < ApplicationController
     if @address.update(address_params)
       redirect_to member_shipping_addresses_path
     else
-      render :edits
+      render :edit
   end
 end
 
