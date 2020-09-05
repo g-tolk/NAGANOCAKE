@@ -2,8 +2,8 @@
 
 <%= form_for(@genre, url: admin_genre_path, method: :patch) do |f| %>
   <%= f.text_field :name %>
-  <label><%= f.radio_button :valid_status, "true",{:checked => true} %>有効</label>
-  <label><%= f.radio_button :valid_status, "false" %>無効</label>
+  <label><%= f.radio_button :valid_status, "good",{:checked => true} %>有効</label>
+  <label><%= f.radio_button :valid_status, "bad" %>無効</label>
   <%= f.submit '変更を保存する', class:"btn btn-primary" %>
 <% end %>
 
