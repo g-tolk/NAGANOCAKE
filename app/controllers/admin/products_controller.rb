@@ -18,6 +18,7 @@ class Admin::ProductsController < ApplicationController
     if @product.save
       redirect_to admin_products_path
     else
+      @products =Product.all
       render 'index'
     end
   end
