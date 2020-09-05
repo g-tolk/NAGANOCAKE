@@ -16,8 +16,8 @@
           <td><%= member.id %></td>
           <td><%= link_to member.family_name + member.first_name, admin_member_path(member.id) %></td>
           <td><%= member.email %></td>
-          <td><% if member.is_withdeawal_status == "false" %><p>有効</p>
-              <% else %><p>退会</p>
+          <td><% if member.is_withdeawal_status == false %><p>退会</p>
+              <% else %><p>有効</p>
               <% end %></td>
         </tr>
       <% end %>
