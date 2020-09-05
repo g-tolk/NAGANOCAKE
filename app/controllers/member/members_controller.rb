@@ -25,7 +25,7 @@ class Member::MembersController < ApplicationController
   def withdraw
     @member = Member.find(current_member.id)
     #現在ログインしているユーザーを@userに格納
-    @member.update(is_withdeawal_status: "false")
+    @member.update(is_withdeawal_status: false)
     #updateで登録情報をfalseに変更
     reset_session
     #sessionIDのresetを行う
