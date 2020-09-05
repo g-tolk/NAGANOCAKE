@@ -1,16 +1,18 @@
 class Member::ShippingAddressesController < ApplicationController
+
   def index
   	@address = ShippingAddress.new
+    @member = @address.member
   	@addresses = ShippingAddress.all
   end
 
 
   def create
   	@address = ShippingAddress.new(address_params)
-  	@address.member_id = current_member.id
   	if @address.save
+      redirect_to member_shipping_addresses(@member.id)
   	else
-  	@addresses = ShippingAddress.all
+    @addresses = ShippingAddress.all
   	render :index
     end
   end
@@ -20,7 +22,7 @@ class Member::ShippingAddressesController < ApplicationController
 
   private
   def address_params
-  	paramas.require(:shipping_address).permit(:member_id, :name, :postal_code, :address)
+  	params.require(:shipping_address).permit(:member_id, :name, :postal_code, :address)
   end
 
 end
