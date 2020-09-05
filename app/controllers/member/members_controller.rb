@@ -10,7 +10,7 @@ class Member::MembersController < ApplicationController
   end
 
   def edit
-    @member = Member.find(params[:id])
+    @member = Member.find(current_member.id)
   end
 
   def update
@@ -25,8 +25,8 @@ class Member::MembersController < ApplicationController
   def withdraw
     @member = Member.find(current_member.id)
     #現在ログインしているユーザーを@userに格納
-    @member.update(is_withdeawal_status: "Invalid")
-    #updateで登録情報をInvalidに変更
+    @member.update(is_withdeawal_status: "false")
+    #updateで登録情報をfalseに変更
     reset_session
     #sessionIDのresetを行う
     redirect_to root_path
