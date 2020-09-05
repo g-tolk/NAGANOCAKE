@@ -9,7 +9,7 @@ class Member::MembersController < ApplicationController
   end
 
   def edit
-    @member = Member.find(params[:id])
+    @member = Member.find(current_member.id)
   end
 
   def update
