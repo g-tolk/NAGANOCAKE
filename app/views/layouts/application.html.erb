@@ -17,8 +17,8 @@
         <nav class="nav1 member-after-login">
           <p>ようこそ、<%= current_member.family_name %>さん！</p>
             <ul>
-              <li><%= link_to 'マイページ', member_members_path(current_member), class: "col-xs-1 btn btn-default" %></li>
-              <li><%= link_to '商品一覧', member_products_path(current_member), class: "col-xs-1 btn btn-default" %></li>
+              <li><%= link_to 'マイページ', member_members_path, class: "col-xs-1 btn btn-default" %></li>
+              <li><%= link_to '商品一覧', member_products_path, class: "col-xs-1 btn btn-default" %></li>
               <li><%= link_to 'カート', member_cart_products_path(current_member), class: "col-xs-1 btn btn-default" %></li>
               <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete, class: "col-xs-1 btn btn-default" %></li>
             </ul>
