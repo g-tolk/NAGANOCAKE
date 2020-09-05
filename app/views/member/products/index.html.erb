@@ -1,18 +1,25 @@
-<h1>ジャンル検索</h1>
-
-<a href = "#">ケーキ<a>
-<a href = "#">焼き菓子<a>
-<a href = "#">プリン<a>
-<a href = "#">キャンデー<a>
-
-
-
-<h1>商品一覧（全X）</h1>
-
-
-<% @products.each do |product| %>
-
-    <%= attachment_image_tag(product, :image, :fill, 200, 200, fallback: "no-image-mini.jpg") %>
-      <%= product.name%>
-      <%= product.non_taxed_price%> * 0.8
-<% end %>
+<div class="contianer">
+  <div class="row">
+    <h2>商品一覧</h2>
+     <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜き価格</th>
+          <th>ジャンル</th>
+        </tr>
+      </thead>
+        <% @products.each do |product| %>
+      <tbody>
+        <tr>
+          <td><%= product.id %></td>
+          <td><%= link_to product.name %></td>
+          <td><%= product.non_taxed_price %></td>
+          <td><%= product.genre.name %></td>
+        </tr>
+      </tbody>
+        <% end %>
+      </table>
+  </div>
+</div>
