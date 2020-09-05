@@ -1,7 +1,8 @@
 class Member::MembersController < ApplicationController
+  before_action :ensure_correct_member, only: [:edit]
+
   def show
     @member = current_member
-    @members = Member.all
   end
 
   def unsubscribe
@@ -36,6 +37,13 @@ class Member::MembersController < ApplicationController
 
   def member_params
     params.require(:member).permit(:is_withdeawal_status,:family_name, :first_name, :kana_family_name, :kana_first_name, :postal_code, :address, :telephone_number)
+  end
+
+  def ensure_correct_member
+    @member = Member.find(params[:id])
+    unless @member == current_member
+      redirect_to root_path
+    end
   end
 
 end

@@ -15,16 +15,14 @@
     </tr>
   </thead>
   <tbody>
-    <% @members.each do |member| %>
     <tr>
-      <td><%= member.family_name %> <%= member.first_name %></td>
-      <td><%= member.kana_family_name %> <%= member.kana_first_name %></td>
-      <td><%= member.postal_code %></td>
-      <td><%= member.address %></td>
-      <td><%= member.telephone_number %></td>
-      <td><%= member.email %></td>
+      <td><%= @member.family_name %> <%= @member.first_name %></td>
+      <td><%= @member.kana_family_name %> <%= @member.kana_first_name %></td>
+      <td><%= @member.postal_code %></td>
+      <td><%= @member.address %></td>
+      <td><%= @member.telephone_number %></td>
+      <td><%= @member.email %></td>
     </tr>
-    <% end %>
   </tbody>
 </table>
 
