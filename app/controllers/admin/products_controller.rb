@@ -1,10 +1,10 @@
 class Admin::ProductsController < ApplicationController
   def new
-  	@product = Product.new
+    @product = Product.new
   end
 
   def index
-  	@products =Product.all
+    @products =Product.all
   end
 
   def edit
@@ -14,7 +14,12 @@ class Admin::ProductsController < ApplicationController
   end
 
   def create
-  	@product = Product.new(product_params)
+    @product = Product.new(product_params)
+    if @product.save
+      redirect_to admin_products_path
+    else
+      render 'index'
+    end
   end
 
   def update
@@ -24,5 +29,6 @@ class Admin::ProductsController < ApplicationController
   private
 
   def product_params
-  	params.require(:product).permit(:name, :introduction, :genre_id, :non_taxed_price, :image_id, :sale_status)
+  	params.require(:product).permit(:name, :introduction, :genre_id, :non_taxed_price, :image, :sale_status)
+  end
 end
