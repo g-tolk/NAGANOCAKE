@@ -4,22 +4,22 @@
      <table class="table table-hover">
       <thead>
         <tr>
+          <th></th>
           <th>商品ID</th>
           <th>商品名</th>
           <th>税抜き価格</th>
-          <th>ジャンル</th>
         </tr>
       </thead>
         <% @products.each do |product| %>
       <tbody>
         <tr>
+          <td><%= attachment_image_tag(product, :image, :fill, 50, 50, fallback: "no-image-mini.jpg")%></td>
           <td><%= product.id %></td>
           <td><%= link_to product.name %></td>
           <td><%= product.non_taxed_price %></td>
-          <td><%= product.genre.name %></td>
+          <% end %>
         </tr>
       </tbody>
-        <% end %>
       </table>
   </div>
 </div>
