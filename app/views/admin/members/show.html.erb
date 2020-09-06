@@ -14,7 +14,10 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= @member.id %></td>
+      <td><%= @member.id %>
+        　　<% if @member.is_withdeawal_status == false %><p>退会会員</p>
+              <% else %><p>有効会員</p>
+            <% end %></td>
       <td><%= @member.family_name %><%= @member.first_name %></td>
       <td><%= @member.kana_family_name %><%= @member.kana_first_name %></td>
       <td><%= @member.postal_code %></td>
