@@ -9,5 +9,6 @@ class Member::OrdersController < ApplicationController
   end
 
   def show
+  	@cart_products = CartProduct.all
   end
 end

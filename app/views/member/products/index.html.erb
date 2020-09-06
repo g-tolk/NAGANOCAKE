@@ -30,7 +30,7 @@
         <tr>
           <td><%= attachment_image_tag(product, :image, :fill, 50, 50, fallback: "no-image-mini.jpg")%></td>
           <td><%= product.id %></td>
-          <td><%= link_to product.name %></td>
+          <td><%= link_to product.name, member_product_path(product.id) %></td>
           <td><%= product.non_taxed_price %></td>
         </tr>
       </tbody>

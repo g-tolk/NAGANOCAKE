@@ -11,15 +11,17 @@
 		</div>
 
 		<div class="product col-xs-6">
-			<%= form_for(@product, url: member_cart_products_path) do |f| %>
-			<%= attachment_image_tag(@product, :image, :fill, 50, 50, fallback: "no-image-mini.jpg")%>
-			<%= @product.name %>
-			<%= @product.introduction %>
-			¥<%= @product.non_taxed_price %>(税込)
-			<%= select_tag 'quantity', options_for_select([['個数選択', ''], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5']]) %>
-			<%= link_to "カートに入れる",member_cart_products_path, class: "btn btn-primary" %>
-			<% end %>
+				<%= attachment_image_tag(@product, :image, :fill, 50, 50, fallback: "no-image-mini.jpg")%>
+				<%= @product.name %>
+				<%= @product.introduction %>
+				<%= @product.price_included_tax (@product.non_taxed_price) %>(税込)
+				<%= form_for(@product_new) do |f| %>
+  					<%= f.text_field :quantity %>
+  					<%= f.submit '変更を保存する', class:"btn btn-primary" %>
+				<% end %>
+
+
+				<%= link_to "カートに入れる",member_cart_products_path, class: "btn btn-primary" %>
 		</div>
 	</div>
 </div>
-
