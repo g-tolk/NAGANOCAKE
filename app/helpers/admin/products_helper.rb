@@ -5,6 +5,6 @@ module Admin::ProductsHelper
   end
 
   def price_excluded_tax(non_taxed_price)
-  non_taxed_price / TAX
+  (non_taxed_price / TAX).ceil
   end
 end
