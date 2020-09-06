@@ -1,17 +1,18 @@
 <h3>商品詳細</h3>
 
-<%= attachment_image_tag products, :image %>
+<%= attachment_image_tag @product, :image %>
 
 <h5>商品名</h5>
-<%= member.name %>
+<%= @product.name %>
 <h5>商品説明</h5>
-<%= member.introduction %>
+<%= @product.introduction %>
 <h5>ジャンル</h5>
-<%= member.genre_id %>
+<%= @product.genre.name %>
 <h5>税込価格（税抜価格)</h5>
-<%= member.non_taxed_price %>
+<%= price_included_tax (@product.non_taxed_price)  %>
+<%= @product.non_taxed_price%>
 <h5>販売ステータス</h5>
-<%= member.sale_status %>
+<%= @product.sale_status %>
 
-<%= link_to "編集する", edit_admin_product_path(@),class:"btn btn-primary" %>
+<%= link_to "編集する", edit_admin_product_path(@product.id),class:"btn btn-primary" %>
 
