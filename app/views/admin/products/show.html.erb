@@ -10,9 +10,16 @@
 <%= @product.genre.name %>
 <h5>税込価格（税抜価格)</h5>
 <%= price_included_tax (@product.non_taxed_price)  %>
-<%= @product.non_taxed_price%>
+(<%= @product.non_taxed_price%>)円
 <h5>販売ステータス</h5>
-<%= @product.sale_status %>
+<% if @product.sale_status == true %>
+販売中
+<% else %>
+売り切れ
+<% end %>
 
+
+<div class="field">
 <%= link_to "編集する", edit_admin_product_path(@product.id),class:"btn btn-primary" %>
+</div>
 
