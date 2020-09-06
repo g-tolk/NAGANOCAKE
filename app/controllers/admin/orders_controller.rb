@@ -1,5 +1,10 @@
 class Admin::OrdersController < ApplicationController
   def index
+    @order_product = OrderProduct.all
+  end
+
+  def show
+
   end
 
   def update
