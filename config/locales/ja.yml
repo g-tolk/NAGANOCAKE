@@ -1,0 +1,17 @@
+ja:
+  enums:
+    product_status:
+        cannot_staus: "着手不可"
+        waiting: "制作待ち"
+        making: "制作中"
+        completed: "発送済み"
+
+ja:
+  enums:
+    order_status:
+        waiting_for_payment: "入金待ち"
+        payment_confirmation: "入金確認"
+        making: "制作中"
+        prepairing_for_shipping: "制作準備中"
+        sent: "発送済み"
+

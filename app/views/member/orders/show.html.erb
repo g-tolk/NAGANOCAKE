@@ -1,2 +1,49 @@
-<h1>Members::Orders#show</h1>
-<p>Find me in app/views/members/orders/show.html.erb</p>
+<h1>注文情報確認</h1>
+
+<div class="table col-xs-6">
+	<tr>
+		<th>商品名</th>
+		<th>単価（税込）</th>
+		<th>数量</th>
+		<th>小計</th>
+	</tr>
+	<tr>
+		<% @cart_products.each do |cart_product| %>
+			<td><%= attachment_image_tag cart_product.product, :image %>
+				<%= cart_product.product.name %></td>
+			<td><%= cart_product.product.price_included_tax (cart_product.product.non_taxed_price) %></td>
+			<td><%= cart_product.quantity %></td>
+			<td><%= cart_product.product. %></td>
+		<% end %>
+	</tr>
+</div>
+<div class="col-xs-1">
+</div>
+<div class="table col-xs-5">
+	<tr>
+    	<th>送料</th>
+    	<th><%= POSTAGE %></th>
+    </tr>
+    <tr>
+    	<th>商品合計</th>
+    	<th><%=  %></th>
+    </tr>
+    <tr>
+    	<th>請求金額</th>
+    	<th><%=  %></th>
+    </tr>
+</table>
+</div>
+
+<h2><strong>支払方法</strong></h2>
+	<% if @order.payment_method == true %>クレジットカード
+	<% else %>銀行振込
+	<% end %>
+<h2><strong>お届け先</strong></h2>
+	<%=　@order.member.shipping_address.postal_code %>
+	<%=　@order.member.shipping_address.adress %>
+	<%=　@order.member.shipping_address.name %>
+
+<div class="btn">
+	<%= button_to '購入を確定する', member_orders_path, method: :post,　class:"btn btn-primary" %>
+</div>

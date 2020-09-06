@@ -1,41 +1,43 @@
-<h1>Admins::Products#edit</h1>
-<p>Find me in app/views/admins/products/edit.html.erb</p>
-
 <h2>商品編集</h2>
-<%= form_for(@product) do |f| %>
+<%= form_for(@product, url: admin_product_path) do |f| %>
+
+	<% if @product.errors.any? %>
+						<div id="error_explanation">
+							<h3><%= @product.errors.count %>error prohibited this obj from being saved:</h3>
+								<% @product.errors.full_messages.each do |message| %>
+									<%= message %>
+								<% end %>
+						</div>
+					<% end %>
 
 <div class="field">
 
 	<div class="field">
-		<%= f.label :image %>
 		<%= f.attachment_field :image, class: "image" %>
 	</div>
 
 	<div class="field">
-		<%= f.label :name %>
-		<%= f.text_field :name, "商品名" class: "name" %>
+		<h5>商品名</h5><%= f.text_field :name, class: "name" %>
 	</div>
 
 	<div class="field">
-		<%= f.label :introduction %>
-		<%= f.text_area :introduction, "商品説明" class: "introduction" %>
+		<h5>商品説明</h5><%= f.text_area :introduction, class: "introduction" %>
 	</div>
 
 	<div class="field">
-		<%= f.label :genre_id %>
-		<%= f.collection_select(:genre_id, @products, :id, :name ) %>
+		<h5>ジャンル</h5><%= f.collection_select(:genre_id, Genre.all, :id, :name ) %><h5>円</h5>
 	</div>
 
 	<div class="field">
-		<%= f.label :non_taxed_price %>
-		<%= f.text_area :non_taxed_price, "税抜価格" class: "non_taxed_price" %>
+		<h5>税抜き価格</h5><%= f.text_area :non_taxed_price, class: "non_taxed_price" %>
 	</div>
 
 	<div class="field">
-	<%= f.label :sale_status, '販売ステータス' %>
-    <%= f.select :sale_status, {'販売中': 1, '売切れ': 2}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+    <h5>販売ステータス</h5><%= f.select :sale_status, [["販売中",0],["売り切れ",1]], { class: 'form-control'  } %>
 	</div>
 
 	<div class="actions">
 		<%= f.submit "変更を保存" %>
 	</div>
+
+<% end %>

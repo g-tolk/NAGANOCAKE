@@ -9,13 +9,19 @@
 						<li><a href="/products">キャンディ</a></li>
 					</ul>
 		</div>
+
 		<div class="product col-xs-6">
-			<%= product.image %>
-			<%= product.name %>
-			<%= product.introduction %>
-			<%= product.non_taxed_price %>*0.8(税込)
-			< 個数選択 >
-			<%= link_to "カートに入れる", edit_book_path(@book), class: "btn-sm btn-success edit_book_#{@book.id}" %>
+				<%= attachment_image_tag(@product, :image, :fill, 50, 50, fallback: "no-image-mini.jpg")%>
+				<%= @product.name %>
+				<%= @product.introduction %>
+				<%= @product.price_included_tax (@product.non_taxed_price) %>(税込)
+				<%= form_for(@product_new) do |f| %>
+  					<%= f.text_field :quantity %>
+  					<%= f.submit '変更を保存する', class:"btn btn-primary" %>
+				<% end %>
+
+
+				<%= link_to "カートに入れる",member_cart_products_path, class: "btn btn-primary" %>
 		</div>
 	</div>
 </div>

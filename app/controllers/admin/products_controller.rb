@@ -8,15 +8,18 @@ class Admin::ProductsController < ApplicationController
   end
 
   def edit
+    @product = Product.find(params[:id])
   end
 
   def show
+    @product = Product.find(params[:id])
   end
+
 
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to admin_products_path
+      redirect_to admin_product_path(@product.id)
     else
       @products =Product.all
       render 'index'
@@ -24,7 +27,12 @@ class Admin::ProductsController < ApplicationController
   end
 
   def update
-
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+      redirect_to admin_product_path(@product.id)
+    else
+      render "edit"
+    end
   end
 
   private

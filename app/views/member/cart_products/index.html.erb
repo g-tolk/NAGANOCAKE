@@ -1,2 +1,27 @@
-<h1>Members::CartProducts#index</h1>
-<p>Find me in app/views/members/cart_products/index.html.erb</p>
+<h3>ショッピングカート</h3>
+
+
+
+<table class="table table-hover">
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th></th>
+        </tr>
+      </thead>
+        <% @cart_products.each do |cart_product| %>
+      <tbody>
+        <tr>
+          <td><%= attachment_image_tag(cart_product.product, :image, :fill, 50, 50, fallback: "no-image-mini.jpg")%><%= cart_product.product.name %></td>
+          <td><%= cart_product.product.price_included_tax (cart_product.product.non_taxed_price) %></td>
+          <td><% 
+            <%= cart_product.quantity %></td>
+          <td><%= sub_total(@product.non_taxed_price,@cartproduct.quantity) %></td>
+          <td><%= link_to "削除する","cart_products/#{product.id}", method: :delete, class: "btn btn-danger" %></td>
+          <% end %>
+        </tr>
+      </tbody>
+      </table>
