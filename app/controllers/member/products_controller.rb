@@ -6,11 +6,12 @@ class Member::ProductsController < ApplicationController
   end
 
   def index
-  @products = Product.all
+    @products = Product.all
   end
 
 
   def show
   	@product = Product.find(params[:id])
+    @product_new = Product.new
   end
 end
