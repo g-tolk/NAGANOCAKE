@@ -14,6 +14,7 @@ class Member::ProductsController < ApplicationController
   def show
   	@product = Product.find(params[:id])
     @product_new = Product.new
+    @product_new.cart_products.build
   end
 
 

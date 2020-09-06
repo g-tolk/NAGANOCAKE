@@ -14,10 +14,12 @@
 				<%= attachment_image_tag(@product, :image, :fill, 50, 50, fallback: "no-image-mini.jpg")%>
 				<%= @product.name %>
 				<%= @product.introduction %>
-				<%= @product.price_included_tax (@product.non_taxed_price) %>(税込)
-				<%= form_for(@product_new) do |f| %>
-  					<%= f.text_field :quantity %>
-  					<%= f.submit '変更を保存する', class:"btn btn-primary" %>
+				<%= price_included_tax (@product.non_taxed_price) %>(税込)
+				<%= form_for(@product_new, url: member_cart_products_path) do |f| %>
+				<%= f.hidden_field :unique_key, :value => params[:unique_key] %>
+					<%= f.fields_for :cart_producs do |i| %>
+    					<%= i.number_field :quantity, min: 0 %>
+  					<% end %>
 				<% end %>
 
 
