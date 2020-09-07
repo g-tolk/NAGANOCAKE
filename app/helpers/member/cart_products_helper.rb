@@ -9,9 +9,4 @@ module Member::CartProductsHelper
 		(non_taxed_price * TAX).ceil * quantity
 	end
 
-	def total()
-		
-
-	end
-
 end
