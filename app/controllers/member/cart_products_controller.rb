@@ -38,5 +38,4 @@ class Member::CartProductsController < ApplicationController
   def cart_product_params
     params.require(:cart_product).permit(:quantity)
   end
-
 end
