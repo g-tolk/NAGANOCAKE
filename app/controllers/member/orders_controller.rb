@@ -1,5 +1,6 @@
 class Member::OrdersController < ApplicationController
   def new
+  	@order = Order.new
   end
 
   def complete
@@ -26,10 +27,3 @@ class Member::OrdersController < ApplicationController
      end
   end
 end
-t.integer "order_id", null: false
-    t.integer "product_id", null: false
-    t.integer "quantity", null: false
-    t.integer "non_taxed_price", null: false
-    t.integer "product_status", default: 1, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
