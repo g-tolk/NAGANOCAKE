@@ -1,6 +1,7 @@
 class Member::CartProductsController < ApplicationController
 
   def index
+    @cart_product = current_member
     @cart_products = CartProduct.all
   end
 
@@ -20,7 +21,13 @@ class Member::CartProductsController < ApplicationController
   end
 
   def update
-
+    @cart_product = CartProduct.find(params[:id])
+    if @cart_product.update(cart_product_params)
+      flash[:success] = " successfully"
+      redirect_to member_cart_product_path(@cart_product)
+    else
+      render "index"
+    end
   end
 
   def destroy
