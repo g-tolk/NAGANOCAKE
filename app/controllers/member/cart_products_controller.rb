@@ -12,6 +12,7 @@ class Member::CartProductsController < ApplicationController
     @cart_product.user_id = current_user.id
     @cart_product.save
     redirect_to = member_cart_products_path(@cart_product)
+ 
   end
 
   def update
@@ -28,5 +29,4 @@ class Member::CartProductsController < ApplicationController
   def cart_product_params
     params.require(:cart_product).permit(:member_id, :product_id, :quantity)
   end
-
 end
