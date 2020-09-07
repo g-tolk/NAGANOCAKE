@@ -6,13 +6,18 @@ class Member::CartProductsController < ApplicationController
   end
 
   def create
-    @product = Product.find(params[:product_id])
     @cart_product = CartProduct.new(cart_product_params)
-    @cart_product.product_id = product.id
-    @cart_product.user_id = current_user.id
-    @cart_product.save
-    redirect_to = member_cart_products_path(@cart_product)
- 
+    @cart_product.member_id = current_member.id
+    if  current_member.cart_products.find_by(product_id: params[:cart_product][:product_id]).present?
+        cart_product = current_member.cart_products.find_by(product_id: params[:cart_product][:product_id])
+        cart_product.update(quantity: cart_product.quantity.to_i + @cart_product.quantity.to_i)
+        flash[:notice] = "Item was successfully added to cart."
+        redirect_to member_cart_products_path
+    else
+        @cart_product.save
+        flash[:notice] = "New Item was successfully added to cart."
+        redirect_to member_cart_products_path
+    end
   end
 
   def update
@@ -20,6 +25,10 @@ class Member::CartProductsController < ApplicationController
   end
 
   def destroy
+     @cart_product = CartProduct.find(params[:id])
+    cart_product = current_member.cart_products.find_by(product_id: @cart_product.product)
+    cart_product.destroy
+    redirect_to member_cart_products_path
   end
 
   def destroy_all
@@ -27,6 +36,6 @@ class Member::CartProductsController < ApplicationController
 
   private
   def cart_product_params
-    params.require(:cart_product).permit(:member_id, :product_id, :quantity)
+    params.require(:cart_product).permit(:quantity)
   end
 end
