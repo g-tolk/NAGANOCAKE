@@ -16,13 +16,11 @@
 				<%= @product.introduction %>
 				<%= price_included_tax (@product.non_taxed_price) %>(税込)
 				<%= form_for(@product_new, url: member_cart_products_path) do |f| %>
-				<%= f.hidden_field :unique_key, :value => params[:unique_key] %>
-					<%= f.fields_for :cart_producs do |i| %>
-    					<%= i.number_field :quantity, min: 0 %>
-  					<% end %>
+					<%= f.hidden_field :unique_key, :value => params[:name] %>
+						<%= f.fields_for :cart_producs do |i| %>
+    						<%= i.number_field :quantity, min: 0 %>
+  						<% end %>
 				<% end %>
-
-
 				<%= link_to "カートに入れる",member_cart_products_path, class: "btn btn-primary" %>
 		</div>
 	</div>

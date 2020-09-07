@@ -6,15 +6,15 @@ class Member::ProductsController < ApplicationController
   end
 
   def index
-  @search_product = Product.where(genre_id: params[:genre_id])
-  @genres = Genre.all
-  @products = Product.all
+    @search_product = Product.where(genre_id: params[:genre_id])
+    @genres = Genre.all
+    @products = Product.all
   end
 
   def show
   	@product = Product.find(params[:id])
-    @product_new = Product.new
-    @product_new.cart_products.build
+    #@product_new.cart_products.build
+    @product_new = CartProduct.new
   end
 
 
