@@ -5,7 +5,8 @@ class Member::CartProductsController < ApplicationController
     @cartproduct = cartproduct.new
   end
 
-  def create
+  def creates
+
   end
 
   def update
@@ -17,4 +18,10 @@ class Member::CartProductsController < ApplicationController
   def destroy_all
   end
 
+
+  private
+
+  def cart_params
+    params.require(:cart_products).permit(:member_id, :product_id, :quantity)
+  end
 end
