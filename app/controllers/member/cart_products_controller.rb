@@ -1,7 +1,6 @@
 class Member::CartProductsController < ApplicationController
 
   def index
-    @cart_product = CartProduct.find_by(id: params[:id], product_id: params[:product_id])
     @cart_products = CartProduct.all
   end
 
@@ -25,17 +24,18 @@ class Member::CartProductsController < ApplicationController
   end
 
   def destroy
-     @cart_product = CartProduct.find(params[:id])
-    cart_product = current_member.cart_products.find_by(product_id: @cart_product.product)
+    cart_product = CartProduct.find(params[:id])
     cart_product.destroy
     redirect_to member_cart_products_path
   end
 
   def destroy_all
+    CartProduct.destroy_all
+    redirect_to member_products_path
   end
 
   private
   def cart_product_params
-    params.require(:cart_product).permit(:quantity)
+    params.require(:cart_product).permit(:quantity, :product_id)
   end
 end
