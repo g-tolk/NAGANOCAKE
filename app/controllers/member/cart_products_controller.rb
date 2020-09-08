@@ -21,12 +21,10 @@ class Member::CartProductsController < ApplicationController
   end
 
   def update
-    @cart_product = CartProduct.find(params[:id])
+    @cart_product = CartProduct.find_by(params[:product_id])
     if @cart_product.update(cart_product_params)
       flash[:success] = " successfully"
-      redirect_to member_cart_product_path(@cart_product)
-    else
-      render "index"
+      redirect_to member_cart_products_path
     end
   end
 
