@@ -8,12 +8,13 @@
 		<th>小計</th>
 	</tr>
 	<tr>
-		<% @cart_products.each do |cart_product| %>
+		<% @sum = 0 %>
+		<% @orders.each do |order| %>
 			<td><%= attachment_image_tag cart_product.product, :image %>
 				<%= cart_product.product.name %></td>
 			<td><%= cart_product.product.price_included_tax (cart_product.product.non_taxed_price) %></td>
 			<td><%= cart_product.quantity %></td>
-			<td><%= cart_product.product. %></td>
+			<td><% @sum += sub_total(cart_product.product.non_taxed_price,cart_product.quantity) %></td>
 		<% end %>
 	</tr>
 </div>
@@ -26,11 +27,11 @@
     </tr>
     <tr>
     	<th>商品合計</th>
-    	<th><%=  %></th>
+    	<th><%= @sum %></th>
     </tr>
     <tr>
     	<th>請求金額</th>
-    	<th><%=  %></th>
+    	<th></th>
     </tr>
 </table>
 </div>
