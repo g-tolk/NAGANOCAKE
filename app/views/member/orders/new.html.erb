@@ -1,16 +1,16 @@
 <h1>注文情報入力</h1>
 
 <h3>支払い方法</h3>
-<%= form_for(@order) do |f| %>
-<label><%= f.radio_button :payment_method, true,{:checked => true} %>クレジットカード</label>
-
-<label><%= f.radio_button :payment_method, true,{:checked => true} %>銀行振り込み</label>
-
-<% end %>
+	<%= form_for(@order_new, url:member_orders_confirm_path) do |f| %>
+		<label><%= f.radio_button :payment_method, true,{:checked => true} %>クレジットカード</label>
+		<label><%= f.radio_button :payment_method, false %>銀行振り込み</label>
+	<% end %>
 
 <h3>お届け先</h3>
-<!-- 自身の住所 -->
- <%= f.text_field :adrdress.name %>
+	<!-- 自身の住所 -->
+ 	<%= current_member.postage %>
+ 	<%= current_member.address %>
+ 	<%= current_member.name %>
 
 <!-- 登録済み住所からの選択 -->
 <%= form_for(@address, url: "/shipping_addresses") do |f| %>
