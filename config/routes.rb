@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   	resources :shipping_addresses, except: [:show,:new]
     resources :orders, only: [:show,:edit,:new,:create,:index]
     get 'orders/complete' => 'orders#complete'
-    post 'orders/comfirm' => 'orders#comfirm'
+    post 'orders/confirm' => 'orders#comfirm'
     resources :cart_products, only: [:index,:update,:create,:destroy] do
     collection do
     delete 'cart_products/destroy_all'
