@@ -5,8 +5,8 @@ module Member::CartProductsHelper
   (non_taxed_price * TAX).ceil
   end
 
-	def sub_total(non_taxed_price,quantity)
+  def sub_total(non_taxed_price,quantity)
 		(non_taxed_price * TAX).ceil * quantity
-	end
+  end
 
 end

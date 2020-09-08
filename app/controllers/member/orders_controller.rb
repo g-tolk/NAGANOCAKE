@@ -1,6 +1,7 @@
 class Member::OrdersController < ApplicationController
   def new
-  	@order = Order.new
+  	@order_new = Order.new
+    #@member = current_member
   end
 
   def confirm
