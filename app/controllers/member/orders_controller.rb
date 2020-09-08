@@ -3,7 +3,7 @@ class Member::OrdersController < ApplicationController
   	@order = Order.new
   end
 
-  def comfirm
+  def confirm
   end
 
   def complete
