@@ -3,6 +3,9 @@ class Member::OrdersController < ApplicationController
   	@order = Order.new
   end
 
+  def comfirm
+  end
+
   def complete
   end
 
