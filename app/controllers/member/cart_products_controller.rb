@@ -1,8 +1,16 @@
 class Member::CartProductsController < ApplicationController
 
   def index
-    @cart_product = current_member
+    cart_product.id = current_cart_product.id
     @cart_products = CartProduct.all
+  end
+
+  def update
+    @cart_product = CartProduct.find(params[:id])
+    if @cart_product.update(cart_product_params)
+      flash[:success] = " successfully"
+      redirect_to member_cart_products_path
+    end
   end
 
   def create
@@ -17,14 +25,6 @@ class Member::CartProductsController < ApplicationController
         @cart_product.save
         flash[:notice] = "New Item was successfully added to cart."
         redirect_to member_cart_products_path
-    end
-  end
-
-  def update
-    @cart_product = CartProduct.find_by(params[:product_id])
-    if @cart_product.update(cart_product_params)
-      flash[:success] = " successfully"
-      redirect_to member_cart_products_path
     end
   end
 

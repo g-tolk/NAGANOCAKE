@@ -8,9 +8,9 @@
 
 <h3>お届け先</h3>
 	<!-- 自身の住所 -->
- 	<%= @order.member.postage %>
- 	<%= @order.member.address %>
- 	<%= @order.member.name %>
+ 	<%= current_member.postage %>
+ 	<%= current_member.address %>
+ 	<%= current_member.name %>
 
 <!-- 登録済み住所からの選択 -->
 <%= form_for(@address, url: "/shipping_addresses") do |f| %>
