@@ -1,8 +1,9 @@
 class Member::CartProductsController < ApplicationController
 
   def index
-    cart_product.id = current_cart_product.id
-    @cart_products = CartProduct.all
+    @cart_products = CartProduct.where(member_id:current_member.id)
+    #@member = current_member
+    #@cart_product = @member.cart_products
   end
 
   def update
