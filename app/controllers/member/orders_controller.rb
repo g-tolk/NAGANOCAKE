@@ -38,13 +38,14 @@ class Member::OrdersController < ApplicationController
         @order.address = params[:order][:new_add][:address]
         @order.receiver = params[:order][:new_add][:name]
       end
+
       @order.save
 
       # send_to_addressで住所モデル検索、該当データなければ新規作成
       if Address.find_by(address: @order.address).nil?
         @address = Address.new
         @address.postal_code = @order.postal_code
-        #@address.address = @order.send_to_address
+        @address.address = @order.send_to_address
         @address.addressee = @order.addressee
         @address.member_id = current_member.id
         @address.save
@@ -60,7 +61,7 @@ class Member::OrdersController < ApplicationController
         order_product.save
         cart_product.destroy #order_itemに情報を移したらcart_itemは消去
       end
-      render :complete
+      render 'complete'
     else
       redirect_to root_path
 　　　flash[:danger] = 'カートが空です。'
@@ -92,11 +93,9 @@ class Member::OrdersController < ApplicationController
   end
 
   private
-  def order_params
-    params.require(:order).permit(:member_id, :postage, :payment_amount, :payment_method, :order_status, :receiver, :postal_code, :address,
-      order_items_attributes: [:order_id, :product_id, :quantity, :order_price, :make_status]
-      )
-  end
 
+  def order_params
+    params.require(:order).permit(:member_id, :postage, :payment_amount, :payment_method, :order_status, :receiver, :postal_code, :address)
+  end
 end
 
