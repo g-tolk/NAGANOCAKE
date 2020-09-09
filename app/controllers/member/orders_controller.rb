@@ -8,7 +8,7 @@ class Member::OrdersController < ApplicationController
   end
 
   def new
-  	@order_new = Order.new
+  	@order = Order.new
   end
 
   def complete
@@ -21,20 +21,22 @@ class Member::OrdersController < ApplicationController
       @order.member_id = current_member.id
 
       # 住所のラジオボタン選択に応じて引数を調整
-      @add = params[:order][:add].to_i
-      case @add
-        when 1
-          @order.postal_code = @member.postal_code
-          @order.address = @member.address
-          #@order.addressee = family_name(@member)
-        when 2
-          @order.postal_code = params[:order][:postal_code]
-          #@order.send_to_address = params[:order][:send_to_address]
-          @order.address = params[:order][:address]
-        when 3
-          @order.postal_code = params[:order][:postal_code]
-          #@order.send_to_address = params[:order][:send_to_address]
-          @order.address = params[:order][:address]
+    @add = params[:order][:add].to_i
+    case @add
+      when 1
+        @order.postal_code = current_member.postal_code
+        @order.address = current_member.address
+        @order.receiver = current_member.family_name + current_member.first_name
+      when 2
+        @sta = params[:order][:shipping_address].to_i
+        @send_to_address = ShippingAddress.find(@sta)
+        @order.postal_code = @send_to_address.postal_code
+        @order.address = @send_to_address.address
+        @order.receiver = @send_to_address.name
+      when 3
+        @order.postal_code = params[:order][:new_add][:postal_code]
+        @order.address = params[:order][:new_add][:address]
+        @order.receiver = params[:order][:new_add][:name]
       end
       @order.save
 
@@ -66,27 +68,27 @@ class Member::OrdersController < ApplicationController
   end
 
   def confirm
-    @order_new = Order.new
-    @cart_products = current_mmeber.cart_products
-    @order.payment_method = params[:order][:payment_method]
+    @order = Order.new(order_params)
     # 住所のラジオボタン選択に応じて引数を調整
     @add = params[:order][:add].to_i
     case @add
       when 1
-        @order.post_code = @member.post_code
-        #@order.send_to_address = @customer.address
-        @order.addressee = @member.family_name + @member.first_name
+        @order.postal_code = current_member.postal_code
+        @order.address = current_member.address
+        @order.receiver = current_member.family_name + current_member.first_name
       when 2
-        @sta = params[:order][:send_to_address].to_i
-        @send_to_address = Address.find(@sta)
-        @order.post_code = @send_to_address.post_code
-        @order.send_to_address = @send_to_address.address
-        @order.addressee = @send_to_address.addressee
+        @sta = params[:order][:shipping_address].to_i
+        @send_to_address = ShippingAddress.find(@sta)
+        @order.postal_code = @send_to_address.postal_code
+        @order.address = @send_to_address.address
+        @order.receiver = @send_to_address.name
       when 3
-        @order.post_code = params[:order][:new_add][:post_code]
-        @order.send_to_address = params[:order][:new_add][:address]
-        @order.addressee = params[:order][:new_add][:addressee]
+        @order.postal_code = params[:order][:new_add][:postal_code]
+        @order.address = params[:order][:new_add][:address]
+        @order.receiver = params[:order][:new_add][:name]
     end
+
+    @cart_products = current_member.cart_products
   end
 
   private
