@@ -31,12 +31,13 @@ Rails.application.routes.draw do
   	resources :shipping_addresses, except: [:show,:new]
     resources :orders, only: [:show,:edit,:new,:create,:index]
     get 'orders/complete' => 'orders#complete'
-    post 'orders/confirm' => 'orders#comfirm'
+    post 'orders/confirm' => 'orders#confirm'
     resources :cart_products, only: [:index,:update,:create,:destroy] do
     collection do
     delete 'cart_products/destroy_all'
     end
   end
+
     resources :products, only: [:index,:show]
     get 'products/top' => 'products#top'
     get '/products/about' => 'products#about'
