@@ -1,36 +1,83 @@
 <h1>注文情報入力</h1>
+<%= form_with(model: @order, local: true, url: member_orders_confirm_path ) do |f| %>
 
-<h3>支払い方法</h3>
-	<%= form_for(@order_new, url:member_orders_confirm_path) do |f| %>
-		<label><%= f.radio_button :payment_method, true,{:checked => true} %>クレジットカード</label>
-		<label><%= f.radio_button :payment_method, false %>銀行振り込み</label>
-	<% end %>
+  <!-- 支払方法 -->
+  <div class="row">
+    <h3><strong><%= f.label :支払方法 %></strong></h3>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 btn-group" data-toggle="buttons">
+      <label class="btn btn-outline-secondary active">
+        <%= f.radio_button :payment_method, true, {checked: true} %> クレジットカード
+      </label>
+      <label class="btn btn-outline-secondary">
+        <%= f.radio_button :payment_method, false, {} %> 銀行振込
+      </label>
+    </div>
+  </div>
 
-<h3>お届け先</h3>
-	<!-- 自身の住所 -->
-  ご自身の住所
- 	<%= current_member.postal_code %>
- 	<%= current_member.address %>
- 	<%= current_member.family_name %><%= current_member.first_name %>
+  <!-- お届け先 -->
+  <div class="row space">
+    <h3><strong><%= f.label :お届け先 %></strong></h3>
+  </div>
+  <!-- 自身の住所 -->
+  <div class="row">
+    <p>
+      <label><%= f.radio_button :add, 1, checked: true, checked: "checked" %>ご自身の住所</label><br>
+      <%= current_member.postal_code %>
+      <%= current_member.address %>
+      <%= current_member.family_name %><%= current_member.first_name %>
+    </p>
+  </div>
+  <!-- 登録済み住所 -->j
+  <div class="row space-sm">
+    <p>
+      <label><%= f.radio_button :add, 2 %>登録住所から選択</label><br>
+      <%= f.collection_select :shipping_address, current_member.shipping_addresses, :id, :address,:postal_code,:name %>
+    </p>
+  </div>
+  <!-- 新しい住所 -->
+  <div class="row space-sm">
+    <p><label><%= f.radio_button :add, 3 %>新しいお届け先</label></p>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <%= f.fields_for :new_add do |na| %>
+      <div class="row">
+        <div class="col-lg-3">
+          <strong>郵便番号</strong>
+        </div>
+        <div class="col-lg-6">
+          <%= na.text_field :postal_code, class: 'form-control' %>
+        </div>
+      </div>
 
-<!-- 登録済み住所からの選択 -->
- 登録済み住所から選択
- <%= form_for(cart_product, url: member_cart_product_path(cart_product.id)) do |c| %>
-            <td><%= shipping_address.collection_select :shipping_addresses_id, shipping_address.all, :id, :address %><%= f.submit "変更" %></td>
-            <% end %>
+      <div class="row">
+        <div class="col-lg-3">
+          <strong>住所</strong>
+        </div>
+        <div class="col-lg-6">
+          <%= na.text_field :address, class: 'form-control' %>
+        </div>
+      </div>
 
-　<%= current_member %>
+      <div class="row">
+        <div class="col-lg-3">
+          <strong>宛名</strong>
+        </div>
+        <div class="col-lg-6">
+          <%= na.text_field :name, class: 'form-control' %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <!-- お届け先ここまで -->
 
+  <div class="row space">
+    <div class="col-lg-2 offset-lg-7">
+      <%= f.submit "確認画面へ進む", class: "btn btn-danger"%>
+    </div>
+  </div>
 
-<!-- 新しいお届け先 -->
-<%= form_for(@address, url: "/shipping_addresses") do |f| %>
-    <%= f.collection_select :adress_id, Address.all, :postal_code, :address, :name%>
-  <h4>郵便番号</h4>
-  <%= f.text_field :postal_code %>
-  <h4>住所</h4>
-  <%= f.text_field :address %>
-  <h4>宛名</h4>
-  <%= f.text_field :name %>
-
-<%= f.submit '確認画面に進む', class: "btn btn-primary" %>
-<% end %>
+  <% end %>
