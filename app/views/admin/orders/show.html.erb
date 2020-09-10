@@ -9,6 +9,7 @@
       <th>配送先</th>
       <th>支払い方法</th>
       <th>注文ステータス</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -18,11 +19,14 @@
       <td><% if @order.payment_method = true %>クレジットカード
         　　　<% else %>銀行振込
         　<% end %></td>
-      <td><%= f.select :order_status, [["",true],["売り切れ",false]] %></td>
+      <td><%= f.select :order_status, [["入金待ち",0],["入金確認",1],["製作中",2],[ "発送準備中",3],["発送済み",4]] %></td>
+      <td><%= f.submit '更新',class: "btn btn-primary"%></td>
     </tr>
   </tbody>
 </table>
 <% end %>
+
+
 
 <%= form_with(model: @order, url:admin_order_detail_path) do |usagi| %>
 <table class="table">
@@ -36,15 +40,17 @@
       <th></th>
     </tr>
   </thead>
+  <% @order.eachs do |order| %>>
   <tbody>
     <tr>
-      <td><%= @order.order_product.name %></td>
-      <td><%= @order.order_product.tax_included_price(@order.order_product.non_taxed_price) %></td>
-      <td><%= @order.order_product.quantity %></td>
+      <td><%= order.order_product.name %></td>
+      <td><%= order_product.tax_included_price(@order.order_product.non_taxed_price) %></td>
+      <td><%= order_product.quantity %></td>
       <td><%= sub_total(@order) %></td>
-      <td><%= @order.product.product_status %></td>
+      <td><%= @order.product.product_status %><%= f.number_field :quantity, min: 1 %><%= f.submit "更新",class: "btn btn-danger" %></td>
     </tr>
   </tbody>
+  <% end %>
 </table>
 
 <h3>商品合計</h3>
