@@ -9,6 +9,7 @@
       <th>配送先</th>
       <th>支払い方法</th>
       <th>注文ステータス</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -18,13 +19,15 @@
       <td><% if @order.payment_method = true %>クレジットカード
         　　　<% else %>銀行振込
         　<% end %></td>
-      <td><%= f.select :order_status, [["",true],["売り切れ",false]] %></td>
+      <td><%= f.select :order_status, [["入金待ち",0],["入金確認",1],["製作中",2],[ "発送準備中",3],["発送済み",4]] %></td>
+      <td><%= f.submit '更新',class: "btn btn-primary"%></td>
     </tr>
   </tbody>
 </table>
 <% end %>
 
 <%= form_with(model: @order_product, url:admin_order_detail_path) do |usagi| %>
+
 <table class="table">
   <thead>
     <tr>
@@ -36,6 +39,7 @@
       <th></th>
     </tr>
   </thead>
+  <% @order.eachs do |order| %>>
   <tbody>
     <tr>
     <% @order.order_products.each do |order_product| %>
@@ -48,8 +52,10 @@
       <td><%= usagi.submit '更新',class: "btn btn_primary" %></td>
       <% subtotals.push(subtotal) %>
     <% end %>
+
     </tr>
   </tbody>
+  <% end %>
 </table>
 <% end %>
 
