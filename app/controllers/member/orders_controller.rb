@@ -2,9 +2,12 @@ class Member::OrdersController < ApplicationController
 
   def index#注文履歴一覧
     @orders = current_member.orders
+    @cart_products = current_member.cart_products
   end
 
   def show#注文商品詳細画面
+    @order = Order.find(params[:id])
+    @cart_products = @order.order_products
   end
 
   def new
