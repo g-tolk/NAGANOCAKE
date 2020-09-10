@@ -1,5 +1,5 @@
 <h1>注文履歴詳細</h1>
-
+<% subtotals = [] %>
 <%= form_with(model: @order, url:admin_order_path) do |f| %>
 
 <table class="table">
@@ -24,7 +24,7 @@
 </table>
 <% end %>
 
-<%= form_with(model: @order, url:admin_order_detail_path) do |usagi| %>
+<%= form_with(model: @order_product, url:admin_order_detail_path) do |usagi| %>
 <table class="table">
   <thead>
     <tr>
@@ -38,16 +38,25 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= @order.order_product.name %></td>
-      <td><%= @order.order_product.tax_included_price(@order.order_product.non_taxed_price) %></td>
-      <td><%= @order.order_product.quantity %></td>
-      <td><%= sub_total(@order) %></td>
-      <td><%= @order.product.product_status %></td>
+    <% @order.order_products.each do |order_product| %>
+      <td><%= order_product.product.name %></td>
+      <td><%= taxed_price = (order_product.product.non_taxed_price * 1.08).round(0) %></td>
+      <td><%= order_product.quantity %></td>
+      <% subtotal = taxed_price * order_product.quantity %>
+      <td><%= subtotal %></td>
+      <td><%= usagi.select :product_status, [["着手不可",0],["制作待ち",1],["制作中",2],["制作完了",3]] %></td>
+      <td><%= usagi.submit '更新',class: "btn btn_primary" %></td>
+      <% subtotals.push(subtotal) %>
+    <% end %>
     </tr>
   </tbody>
 </table>
+<% end %>
 
 <h3>商品合計</h3>
+<%= subtotals.sum %>
 <h3>送料</h3>
+<%= postage %>
 <h3>請求合計金額</h3>
-<% end %>
+<%= subtotals.sum + postage %>
+

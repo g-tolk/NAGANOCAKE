@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_081954) do
     t.integer "product_id", null: false
     t.integer "quantity", null: false
     t.integer "non_taxed_price", null: false
-    t.integer "product_status", default: 1, null: false
+    t.integer "product_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_081954) do
     t.integer "postage", null: false
     t.integer "payment_amount", null: false
     t.boolean "payment_method", default: true, null: false
-    t.integer "order_status", null: false
+    t.integer "order_status", default: 0, null: false
     t.string "receiver", null: false
     t.string "postal_code", null: false
     t.string "address", null: false
