@@ -1,5 +1,7 @@
 <h1>注文履歴詳細</h1>
 
+<%= form_with(model: @order, url:admin_order_path) do |f| %>
+
 <table class="table">
   <thead>
     <tr>
@@ -11,14 +13,18 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= @member.family_name %><%= @member.first_name %></td>
-      <td><%= @member.postal_code %><%= @member.address %></td>
-      <td></td>
-      <td></td>
+      <td><%= @order.member.family_name + @order.member.first_name %></td>
+      <td><%= @order.postal_code %><%= @order.address %><%= @order.receiver %></td>
+      <td><% if @order.payment_method = true %>クレジットカード
+        　　　<% else %>銀行振込
+        　<% end %></td>
+      <td><%= f.select :order_status, [["",true],["売り切れ",false]] %></td>
     </tr>
   </tbody>
 </table>
+<% end %>
 
+<%= form_with(model: @order, url:admin_order_detail_path) do |usagi| %>
 <table class="table">
   <thead>
     <tr>
@@ -32,12 +38,11 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= @product.name %></td>
-      <td><%= @product.non_taxed_price%></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><%= f.submit "更新" %></td>
+      <td><%= @order.order_product.name %></td>
+      <td><%= @order.order_product.tax_included_price(@order.order_product.non_taxed_price) %></td>
+      <td><%= @order.order_product.quantity %></td>
+      <td><%= sub_total(@order) %></td>
+      <td><%= @order.product.product_status %></td>
     </tr>
   </tbody>
 </table>
@@ -45,3 +50,4 @@
 <h3>商品合計</h3>
 <h3>送料</h3>
 <h3>請求合計金額</h3>
+<% end %>
