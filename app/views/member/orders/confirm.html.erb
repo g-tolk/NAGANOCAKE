@@ -39,7 +39,7 @@
 <div class="table col-xs-5">
 <tr>
   	<th>送料</th>
-  	<th><%= postage %></th>
+  	<th><%= @postage = postage %></th>
   </tr>
   <tr>
   	<th>商品合計</th>
@@ -47,7 +47,7 @@
   </tr>
   <tr>
   	<th>請求金額</th>
-  	<th><%= postage + sum %></th>
+  	<th><%= @payment_amount = postage + sum %> </th>
   </tr>
 </table>
 </div>
@@ -67,8 +67,8 @@
   	<%= f.hidden_field :receiver, :value => "#{@order.receiver}" %>
   	<%= f.hidden_field :payment_amount, :value => @payment_amount %>
   	<%= f.hidden_field :payment_method, :value => @order.payment_method %>
-  	<%= f.hidden_field :postage, :value => @order.postage %>
-  	<%= f.hidden_field :order_status, :value => @order.order_status %>
+  	<%= f.hidden_field :postage, :value => @postage %>
+  	<%= f.hidden_field :order_status, :value => "waiting_for_payment" %>
 
 <div class="btn">
 	<%= f.submit '購入を確定する' ,class: "btn btn-success" %>

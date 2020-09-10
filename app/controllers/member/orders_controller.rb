@@ -42,11 +42,11 @@ class Member::OrdersController < ApplicationController
       @order.save
 
       # send_to_addressで住所モデル検索、該当データなければ新規作成
-      if Address.find_by(address: @order.address).nil?
-        @address = Address.new
+      if ShippingAddress.find_by(address: @order.address).nil?
+        @address = ShippingAddress.new
         @address.postal_code = @order.postal_code
-        @address.address = @order.send_to_address
-        @address.addressee = @order.addressee
+        @address.address = @order.address
+        @address.name = @order.receiver
         @address.member_id = current_member.id
         @address.save
       end
@@ -57,7 +57,7 @@ class Member::OrdersController < ApplicationController
         order_product.order_id = @order.id
         order_product.product_id = cart_product.product_id
         order_product.quantity = cart_product.quantity
-        order_product.order_price = cart_product.product.price
+        order_product.non_taxed_price = cart_product.product.non_taxed_price
         order_product.save
         cart_product.destroy #order_itemに情報を移したらcart_itemは消去
       end
@@ -95,7 +95,8 @@ class Member::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:member_id, :postage, :payment_amount, :payment_method, :order_status, :receiver, :postal_code, :address)
+    params.require(:order).permit(:member_id, :postage, :payment_amount, :payment_method, :order_status, :receiver, :postal_code, :address,
+    order_product_attributes: [:order_id, :product_id, :quantity, :non_taxed_price, :product_status])
   end
 end
 
