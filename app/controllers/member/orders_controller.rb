@@ -53,8 +53,7 @@ class Member::OrdersController < ApplicationController
 
       # cart_itemsの内容をorder_itemsに新規登録
       current_member.cart_products.each do |cart_product|
-        order_product = @order.order_products.build
-        order_product.order_id = @order.id
+        order_product = @order.order_products.new
         order_product.product_id = cart_product.product_id
         order_product.quantity = cart_product.quantity
         order_product.non_taxed_price = cart_product.product.non_taxed_price
