@@ -39,7 +39,7 @@
       <th></th>
     </tr>
   </thead>
-  <% @order.eachs do |order| %>>
+  <% @order.each do |order| %>>
   <tbody>
     <tr>
     <% @order.order_products.each do |order_product| %>
@@ -52,10 +52,8 @@
       <td><%= usagi.submit '更新',class: "btn btn_primary" %></td>
       <% subtotals.push(subtotal) %>
     <% end %>
-
     </tr>
   </tbody>
-  <% end %>
 </table>
 <% end %>
 
