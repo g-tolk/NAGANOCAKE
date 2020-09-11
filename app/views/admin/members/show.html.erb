@@ -1,33 +1,42 @@
-<h1><%= @member.family_name %><%= @member.first_name %>さんの会員詳細</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>顧客ID</th>
-      <th>氏名</th>
-      <th>フリガナ</th>
-      <th>郵便番号</th>
-      <th>住所</th>
-      <th>電話番号</th>
-      <th>メールアドレス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @member.id %>
-        　　<% if @member.is_withdeawal_status == false %><p>退会会員</p>
-              <% else %><p>有効会員</p>
-            <% end %></td>
-      <td><%= @member.family_name %><%= @member.first_name %></td>
-      <td><%= @member.kana_family_name %><%= @member.kana_first_name %></td>
-      <td><%= @member.postal_code %></td>
-      <td><%= @member.address %></td>
-      <td><%= @member.telephone_number %></td>
-      <td><%= @member.email %></td>
-    </tr>
-  </tbody>
-</table>
-
-<btn><%= link_to "編集する",edit_admin_member_path(@member.id), class: "btn btn-primary" %></btn>
-
-<btn><%= link_to "注文履歴一覧を見る",admin_orders_path(@member.id), class: "btn btn-primary" %></btn>
+<div class="container">
+  <div class="row">
+    <h3><%= @member.family_name %><%= @member.first_name %>さんの会員詳細</h3>
+    <table class="table">
+        <tr>
+          <th>顧客ID</th>
+          <td><%= @member.id %>
+            <% if @member.is_withdeawal_status == false %>
+              <span class="bg-danger">退会会員</span>
+                <% else %>
+              <span class="bg-primary ">有効会員</span>
+                <% end %></td>
+        </tr>
+        <tr>
+          <th>氏名</th>
+          <td><%= @member.family_name %><span>  </span><%= @member.first_name %></td>
+        </tr>
+        <tr>
+           <th>フリガナ</th>
+           <td><%= @member.kana_family_name %><span>  </span><%= @member.kana_first_name %></td>
+        </tr>
+        <tr>
+          <th>郵便番号</th>
+          <td><%= @member.postal_code %></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td><%= @member.address %></td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td><%= @member.telephone_number %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @member.email %></td>
+        </tr>
+    </table>
+      <btn><%= link_to "編集する",edit_admin_member_path(@member.id), class: "btn btn-primary" %></btn>
+      <btn><%= link_to "注文履歴一覧を見る",admin_orders_path(@member.id), class: "btn btn-primary" %></btn>
+  </div>
+</div>
