@@ -1,5 +1,6 @@
 class Member::ProductsController < ApplicationController
   def top
+    @genres = Genre.all
   end
 
   def about

@@ -1,57 +1,66 @@
 <h1>注文履歴詳細</h1>
-
-<h2>注文情報</h2>
+<div class="row">
+    <div class="col-xs-7">
+<h3>注文情報</h3>
 <% sum = 0 %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>注文日</th>
-      <th>配送先</th>
-      <th>支払方法</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @order.created_at.strftime("%Y/%m/%d") %></td>
-      <td><%= @order.postal_code %><br><%= @order.address %><br><%= @order.receiver %></td>
-      <td><%= @order.payment_method %></td>
-      <td><%= @order.order_status %></td>
-    </tr>
-  </tbody>
+<table class="table table-bordered">
+  <tr>
+    <th class="active">注文日</th>
+    <td><%= @order.created_at.strftime("%Y/%m/%d") %></td>
+  </tr>
+
+  <tr>
+    <th class="active">配送先</th>
+    <td><%= @order.postal_code %><br><%= @order.address %><br><%= @order.receiver %></td>
+  </tr>
+
+  <tr>
+    <th class="active">支払方法</th>
+    <td><%= @order.payment_method %></td>
+  </tr>
+
+  <tr>
+    <th class="active">ステータス</th>
+    <td><%= @order.order_status %></td>
+  </tr>
 </table>
+</div>
 
+<div class="col-xs-4">
+<h3>請求情報</h3>
 
-<h2>請求情報</h2>
+<% @order.order_products.each do |order| %>
+<% sum += sub_total(order.product.non_taxed_price,order.quantity) %>
+<% end %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>商品合計</th>
-      <th>配送料</th>
-      <th>ご請求額</th>
-    </tr>
-  </thead>
-  <% @order.order_products.each do |order| %>
-      <% sum += sub_total(order.product.non_taxed_price,order.quantity) %>
-     <% end %>
-  <tbody>
+<table class="table table-bordered">
+  <tr>
+    <th class="active">商品合計</th>
     <td><%= sum %></td>
+  </tr>
+
+  <tr>
+    <th class="active">配送料</th>
     <td><%= postage %></td>
+  </tr>
+
+  <tr>
+    <th class="active">ご請求金額</th>
     <td><%= @order.payment_amount %></td>
-  </tbody>
+  </tr>
 </table>
+</div>
 
-<h2>注文内容</h2>
-
-<table class="table">
+<div class="col-xs-11">
+<h3>注文内容</h3>
+<table class="table table-bordered">
   <thead>
     <tr>
-      <th>商品</th>
-      <th>単価（税込)</th>
-      <th>個数</th>
-      <th>小計</th>
+      <th class="active">商品</th>
+      <th class="active">単価（税込)</th>
+      <th class="active">個数</th>
+      <th class="active">小計</th>
     </tr>
   </thead>
   <% @order.order_products.each do |order| %>
@@ -64,3 +73,4 @@
     <% end %>
   </tbody>
 </table>
+</div>
