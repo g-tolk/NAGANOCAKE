@@ -9,6 +9,7 @@ class Admin::OrdersController < ApplicationController
 
   def update
      @order = Order.find(params[:id])
+
     if @order.update(order_params)&& (params[:order_status] == "0")
       redirect_to root_path
        OrderProduct.product_status = 1
