@@ -9,9 +9,13 @@ class Admin::OrdersController < ApplicationController
 
   def update
      @order = Order.find(params[:id])
-    if @order.update(order_params) && (enum order_status == 1)
+     @order.order_status.to_i
+     binding.pry
+    if @order.update(order_params)
       
-      enum product_status = 1 OrderProduct.product_status.update(order_params)
+      #&& (params[:order][:order_status]== 1)
+       OrderProduct.product_status = 1
+       OrderProduct.update
       #redirect_to admin_order_path(@order)
     elsif
       @order.update(order_params) && (enum product_status == 2)
@@ -27,6 +31,6 @@ class Admin::OrdersController < ApplicationController
 
   private
   def order_params
-  params.require(:order).permit(:order_id, :order_status, order_product:[:product_status])
+  params.require(:order).permit(:order_status,:payment_method)
   end
 end
