@@ -1,26 +1,43 @@
-<div class="flex">
-	<div>
-		<h3>ジャンル検索</h3>
-  			<%= render "member/shared/member_genres", genres: @genres %>
-	</div>
-	<div>
-		<h4><strong>ようこそ、NaganoCakeへ！</strong><h4>
-			<p>このサイトは、ケーキ販売のECサイトになります。<br>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-1">
+		</div>
+		<div class="col-xs-5 genre">
+			<h3>ジャンル検索</h3>
+  				<%= render "member/shared/member_genres", genres: @genres %>
+		</div>
+		<div class="col-xs-6 text">
+			<h3><strong>ようこそ、NaganoCakeへ！</strong></h3>
+				<p>このサイトは、ケーキ販売のECサイトになります。<br>
 				会員でない方も商品の閲覧はできますが、<br>
 				購入には会員登録が必要になります。</p>
+		</div>
+	</div>
+	<div class="row recommend">
+		<h3 class="s1">オススメ商品</h3>
+				<div class="col-xs-2">
+					<p>まるごとたまごプリン</p>
+					<%= image_tag 'tamagopurin.jpg', :size => '160x130' %>
+				</div>
+				<div class="col-xs-2">
+					<p>まるごとかぼちゃケーキ</p>
+					<%= image_tag 'kabotya.jpg', :size => '160x130' %>
+				</div>
+				<div class="col-xs-2">
+					<p>いちごのショートケーキ</p>
+					<%= image_tag 'itigo.jpg', :size => '160x130' %>
+				</div>
+				<div class="col-xs-2">
+					<p>パンダロールケーキ</p>
+					<%= image_tag 'panda.jpg', :size => '160x130' %>
+				</div>
+				<div class="col-xs-2">
+					<p>ババロア</p>
+					<%= image_tag 'mu-su.jpg', :size => '160x130' %>
+				</div>
+				<div class="col-xs-2">
+					<p>パンケーキ</p>
+					<%= image_tag 'pancake.jpg', :size => '160x130' %>
+				</div>
 	</div>
 </div>
-			<h3>オススメ商品</h3>
-				<span>
-					<%= image_tag 'meron.jpg', :size => '300x300' %>
-					<p>まるごとメロンケーキ</p>
-				</span>
-				<span>
-					<%= image_tag 'painappulu.jpg', :size => '300x300' %>
-					<p>まるごとパイナップルケーキ</p>
-				</span>
-				<span>
-					<%= image_tag 'tamagopurin.jpg', :size => '300x300' %>
-					<p>まるごとたまごプリン</p>
-				</span>
-	

@@ -8,3 +8,42 @@
 .flex > div {
 	margin-right: 50px;
 }
+.genre {
+	margin-top: 50px;
+}
+.recommend {
+	margin-top: 100px;
+}
+h3 {
+	color: #666666;
+}
+.text {
+	padding-top: 100px;
+	background-image: url("/images/mu-su.jpg");
+	width: 500px;
+	height: 200px;
+	background-size: cover;
+}
+.s1 {
+	color: #444;
+	font-size: 24px;
+	display: flex;
+	align-items: center;
+	padding-bottom: 20px;
+}
+.s1:before, .s1:after {
+	content: "";
+	flex-grow: 1;
+	height: 2px;
+	background: #d2b071;
+	display: block;
+}
+.s1:before {
+	margin-right: .4em;
+}
+.s1:after {
+	margin-left: .4em;
+}
+p {
+	color: #5c3e26;
+}

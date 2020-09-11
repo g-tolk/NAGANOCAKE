@@ -1,12 +1,7 @@
-
-			<div class="table">
-			<tbody>
-    			<% genres.each do |genre| %>
-    				<nav style='list-style:none;'>
-    					<ul>
-      					<li><%= link_to genre.name, member_products_path(genre_id: genre.id)%></li>
-      				    </ul>
-    				<nav>
-    			<% end %>
-			</tbody>
-		    </div>
+<nav class= "genre-nav">
+  <% genres.each do |genre| %>
+    <ul>
+    	<li><%= link_to genre.name, member_products_path(genre_id: genre.id)%></li>
+    </ul>
+  <% end %>
+</nav>
