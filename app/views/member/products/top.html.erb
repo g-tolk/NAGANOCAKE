@@ -1,9 +1,26 @@
-<h1>ようこそ、NaganoCakeへ！
-このサイトは、ケーキ販売のECサイトになります。
-会員でない方も商品の閲覧はできますが、
-購入には会員登録が必要になります。</h1>
-
-
-<h1>ジャンル検索</h1>
-
-<h1>オススメ商品</h1>
+<div class="flex">
+	<div>
+		<h3>ジャンル検索</h3>
+  			<%= render "member/shared/member_genres", genres: @genres %>
+	</div>
+	<div>
+		<h4><strong>ようこそ、NaganoCakeへ！</strong><h4>
+			<p>このサイトは、ケーキ販売のECサイトになります。<br>
+				会員でない方も商品の閲覧はできますが、<br>
+				購入には会員登録が必要になります。</p>
+	</div>
+</div>
+			<h3>オススメ商品</h3>
+				<span>
+					<%= image_tag 'meron.jpg', :size => '300x300' %>
+					<p>まるごとメロンケーキ</p>
+				</span>
+				<span>
+					<%= image_tag 'painappulu.jpg', :size => '300x300' %>
+					<p>まるごとパイナップルケーキ</p>
+				</span>
+				<span>
+					<%= image_tag 'tamagopurin.jpg', :size => '300x300' %>
+					<p>まるごとたまごプリン</p>
+				</span>
+	

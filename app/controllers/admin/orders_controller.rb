@@ -9,11 +9,8 @@ class Admin::OrdersController < ApplicationController
 
   def update
      @order = Order.find(params[:id])
-     @order.order_status.to_i
-     binding.pry
-    if @order.update(order_params)
-      
-      #&& (params[:order][:order_status]== 1)
+    if @order.update(order_params)&& (params[:order_status] == "0")
+      redirect_to root_path
        OrderProduct.product_status = 1
        OrderProduct.update
       #redirect_to admin_order_path(@order)
@@ -31,6 +28,7 @@ class Admin::OrdersController < ApplicationController
 
   private
   def order_params
-  params.require(:order).permit(:order_status,:payment_method)
+  params.require(:order).permit(order_status: params[:order_status])
   end
 end
+#params[:address][:prefecture].to_i
