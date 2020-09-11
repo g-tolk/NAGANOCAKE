@@ -14,35 +14,37 @@
 						</div>
 					<% end %>
 				<!-- エラーメッセージ表示-->
-		<div class="field col-xs-6">
-			<span><%= f.attachment_field :image %></span><br>
-
-		</div>
-		<div class="table col-xs-6">
-			<tr>
-				<th>商品名</th>
-				<th><%= f.text_field :name %></th>
-			</tr>
-			<tr>
-				<th>商品説明</th>
-				<th><%= f.text_area :introduction %></th>
-			</tr>
-						<tr>
-				<th>ジャンル</th>
-				<th><%= f.collection_select :genre_id, Genre.all, :id, :name%></th>
-			</tr>
-			<tr>
-				<th>税抜価格</th>
-				<th><%= f.text_field :non_taxed_price %>円</th>
-			</tr>
-			<tr>
-				<th>販売ステータス</th>
-				<th><%= f.select :sale_status, [["販売中",true],["売り切れ",false]] %></th>
-			</tr>
-		</div>
-		<div class="actions">
-			<%= f.submit '新規登録', class: "btn btn-primary col-xs-6"  %>
-		</div>
+			<form class="col-xs-4" >
+				<span><%= f.attachment_field :image %></span><br>
+			</form>
+			<form class="col-xs-5" >
+					<div class="form-group">
+						<label>商品名</label>
+						<td><%= f.text_field :name%></td>
+					</div>
+					<div class="form-group">
+						<label>商品説明</label>
+						<td><%= f.text_area :introduction %></td>
+					</div>
+					<div class="form-group">
+						<label>ジャンル</label>
+						<td><%= f.collection_select :genre_id, Genre.all, :id, :name%></td>
+					</div>
+					<div class="form-group">
+						<label>税抜価格</label>
+						<td><%= f.text_field :non_taxed_price %>円</td>
+					</div>
+					<div class="form-group">
+						<label>販売ステータス</label>
+						<td><%= f.select :sale_status, [["販売中",true],["売り切れ",false]]%></td>
+					</div>
+			</form>
+	</div>
+			<div class=" col-xs-3 col-md-offset-9 actions">
+				<%= f.submit '新規登録', class: "btn btn-primary col-xs-4"  %>
+			</div>
 		<% end %>
 	</div>
 </div>
+
+

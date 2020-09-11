@@ -1,6 +1,9 @@
 <div class="contianer">
   <div class="row">
     <h2>商品一覧</h2>
+    <h2>
+      <%= link_to " 商品新規登録画面 ", new_admin_product_path, class: "glyphicon glyphicon-plus-sign" %>
+    </h2>
      <table class="table table-hover">
       <thead>
         <tr>
@@ -16,7 +19,7 @@
       <tbody>
         <tr>
           <td><%= product.id %></td>
-          <td><%= link_to product.name %></td>
+          <td><%= link_to product.name, admin_product_path(product.id) %></td>
           <td><%= product.non_taxed_price %></td>
           <td><%= product.genre.name %></td>
           <td><% if product.sale_status == true %>販売中

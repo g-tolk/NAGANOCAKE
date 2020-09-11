@@ -12,7 +12,7 @@ class Admin::OrdersController < ApplicationController
      @order.order_status.to_i
      binding.pry
     if @order.update(order_params)
-      
+
       #&& (params[:order][:order_status]== 1)
        OrderProduct.product_status = 1
        OrderProduct.update
