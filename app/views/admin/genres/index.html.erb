@@ -1,47 +1,45 @@
 <div class="container">
+  <div class="row">
+    <h3>ジャンル一覧・追加</h3>
+      <p>ジャンル</p>
+      <%= form_for(@genre, url: admin_genres_path) do |f| %>
 
-
-
-  <h3>ジャンル一覧・追加</h3>
-    <p>ジャンル</p>
-    <%= form_for(@genre, url: admin_genres_path) do |f| %>
-
-     <% if @genre.errors.any? %>
-            <div id="error_explanation">
-              <h3><%= @genre.errors.count %>error prohibited this obj from being saved:</h3>
-                <% @genre.errors.full_messages.each do |message| %>
-                  <%= message %>
-                <% end %>
-            </div>
-          <% end %>
-
-    <%= f.text_field :name %>
-    <label><%= f.radio_button :valid_status, true,{:checked => true} %>有効</label>
-    <label><%= f.radio_button :valid_status, false%>無効</label>
-    <%= f.submit '追加' %>
-
-    <% end %>
-
-  <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>ジャンル</th>
-          <th>状態</th>
-          <th></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @genres.each do |genre| %>
-          <% if genre.valid_status == true %>
-          <tr>
-            <td><%= genre.name %></td>
-            <td>有効</td>
-            <td><%= link_to "編集する", edit_admin_genre_path(genre),class:"btn btn-primary" %></td>
+       <% if @genre.errors.any? %>
+              <div id="error_explanation">
+                <h3><%= @genre.errors.count %>error prohibited this obj from being saved:</h3>
+                  <% @genre.errors.full_messages.each do |message| %>
+                    <%= message %>
+                  <% end %>
+              </div>
             <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-  </table>
 
+      <%= f.text_field :name %>
+      <label><%= f.radio_button :valid_status, true,{:checked => true} %>有効</label>
+      <label><%= f.radio_button :valid_status, false%>無効</label>
+      <%= f.submit '追加',class:"btn btn-primary" %>
+
+      <% end %>
+
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>ジャンル</th>
+            <th>状態</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @genres.each do |genre| %>
+            <% if genre.valid_status == true %>
+            <tr>
+              <td><%= genre.name %></td>
+              <td>有効</td>
+              <td><%= link_to "編集する", edit_admin_genre_path(genre),class:"btn btn-primary active" %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+  </div>
 </div>
