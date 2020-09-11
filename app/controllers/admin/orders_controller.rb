@@ -9,10 +9,10 @@ class Admin::OrdersController < ApplicationController
 
   def update
      @order = Order.find(params[:id])
-     @order.order_status.to_i
+     if order_status == 入金確認:
      binding.pry
     if @order.update(order_params)
-      
+
       #&& (params[:order][:order_status]== 1)
        OrderProduct.product_status = 1
        OrderProduct.update
