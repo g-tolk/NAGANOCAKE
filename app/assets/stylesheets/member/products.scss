@@ -1,3 +1,10 @@
 // Place all the styles related to the members/products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.flex {
+	display: flex;
+}
+.flex > div {
+	margin-right: 50px;
+}
