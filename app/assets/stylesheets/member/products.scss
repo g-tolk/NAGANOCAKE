@@ -9,17 +9,14 @@
 	margin-right: 50px;
 }
 .genre {
-	margin-top: 50px;
+	margin-top: 70px;
 }
 .recommend {
 	margin-top: 100px;
 }
-h3 {
-	color: #666666;
-}
 .text {
 	padding-top: 100px;
-	background-image: url("/images/mu-su.jpg");
+	background-image: image-url('mu-su.jpg');
 	width: 500px;
 	height: 200px;
 	background-size: cover;
@@ -29,7 +26,7 @@ h3 {
 	font-size: 24px;
 	display: flex;
 	align-items: center;
-	padding-bottom: 20px;
+	padding-bottom: 70px;
 }
 .s1:before, .s1:after {
 	content: "";
@@ -44,6 +41,16 @@ h3 {
 .s1:after {
 	margin-left: .4em;
 }
-p {
+p, h1, h2, h3, h4, h5 {
 	color: #5c3e26;
+}
+.only {
+	color: #fff;
+	text-align: center;
+	background-color: #a47a43;
+	padding: 3px;
+	margin-top: 20px;
+}
+.main {
+	padding-left: 0;
 }
