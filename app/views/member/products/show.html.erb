@@ -11,7 +11,7 @@
 		</div>
 
 		<div class="product col-xs-6">
-				<%= attachment_image_tag(@product, :image, :fill, 50, 50, fallback: "no-image-mini.jpg")%>
+				<%= image_tag attachment_url(@product, :image, :fill, 50, 50, fallback: "no-image-mini.jpg"), size:'300x300'%>
 				<%= @product.name %>
 				<%= @product.introduction %>
 				<%= price_included_tax (@product.non_taxed_price) %>(税込)
