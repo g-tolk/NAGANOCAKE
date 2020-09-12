@@ -4,7 +4,10 @@
     <title>Naganocake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -13,25 +16,26 @@
 <header class="navbar-default">
         <div class = "container" >
             <div class = "row">
-                <div class = "col-xl-4">
+                <div class = "col-xl-6">
                     <div class = "title">
                         <ul class="nav navbar-nav navbar-life">
-                          <li><font size= "5" > NAGANOCAKE</font></li>
+                          <li class="logo"><i class="fab fa-slack"></i> ながの<span class="cake">CAKE</span>
+                            <% if member_signed_in? %>
+                              <li class="current-member-name">ようこそ、<%= current_member.family_name %>さん！</p>
+                            <% end %></li>
                         </ul>
                     </div>
                 </div>
 
+              <div class = "col-xl-6">
               <% if member_signed_in? %>
                 <nav class="nav1 member-after-login navbar-custom">
-                    <div class = "col-xl-8">
                       <ul class="nav navbar-nav navbar-right">
-                        <li>ようこそ、<%= current_member.family_name %>さん！</li>
                         <li><%= link_to 'マイページ', member_members_path %></li>
-                      <li><%= link_to '商品一覧', member_products_path %></li>
-                      <li><%= link_to 'カート', member_cart_products_path %></li>
-                      <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete %></li>
-                    </ul>
-                </div>
+                        <li><%= link_to '商品一覧', member_products_path %></li>
+                        <li><%= link_to 'カート', member_cart_products_path %></li>
+                        <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete %></li>
+                      </ul>
                 </nav>
               <% elsif admin_signed_in? %>
                 <nav class="nav1 admin-after-login navbar-custom">
@@ -52,18 +56,18 @@
                     <li><%= link_to 'ログイン', new_member_session_path %></li>
                   </ul>
                 </nav>
-            </div>
               <% end %>
+              </div>
+            </div>
         </div>
-    </div>
 </header>
 
-      <div class="search">
-      </div>
+<div class="search">
+</div>
 
-    <div class="main">
-      <%= yield %>
-    </div>
+<div class="main">
+  <%= yield %>
+</div>
 
 <footer>
 </footer>

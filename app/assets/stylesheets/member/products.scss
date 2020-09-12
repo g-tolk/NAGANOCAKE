@@ -2,31 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.flex {
-	display: flex;
-}
-.flex > div {
-	margin-right: 50px;
-}
-.genre {
+.recommend {
 	margin-top: 70px;
 }
-.recommend {
-	margin-top: 100px;
-}
-.text {
-	padding-top: 100px;
-	background-image: image-url('mu-su.jpg');
-	width: 500px;
-	height: 200px;
+.main-visual {
+	background-image: image-url('mori.jpg');
 	background-size: cover;
+	background-position: center;
+	width: 100%;
+	height: 600px;
 }
+.text h3 {
+	padding-top: 100px;
+	padding-bottom: 10px;
+	text-align: center;
+	font-size: 30px;
+}
+.text p {
+	font-size: 20px;
+	text-align: center;
+	padding-bottom: 100px;
+}
+
 .s1 {
 	color: #444;
 	font-size: 24px;
 	display: flex;
 	align-items: center;
-	padding-bottom: 70px;
 }
 .s1:before, .s1:after {
 	content: "";
@@ -41,16 +43,38 @@
 .s1:after {
 	margin-left: .4em;
 }
-p, h1, h2, h3, h4, h5 {
-	color: #5c3e26;
-}
 .only {
 	color: #fff;
 	text-align: center;
 	background-color: #a47a43;
 	padding: 3px;
 	margin-top: 20px;
+	width: 100px;
 }
-.main {
-	padding-left: 0;
+.big {
+	font-size: 15px;
+	color: #6f4b3e
+}
+.welcome-text {
+	color: #fff;
+	text-align: center;
+	font-size: 40px;
+	font-family: 'Montserrat Subrayada', sans-serif;
+	padding-top: 180px;
+}
+.cohi {
+	background-image: image-url('cheesecake.jpg');
+	background-size: cover;
+	width: 100%;
+	height: 300px;
+	margin-bottom: 70px;
+}
+.genre {
+	text-align: center;
+}
+.genre h3 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+	margin-bottom: 20px;
+	border-bottom: double 6px #d2b071;
 }
