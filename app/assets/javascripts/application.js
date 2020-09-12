@@ -16,3 +16,8 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(function() {
+  // 一旦hide()で隠してフェードインさせる
+  $('.welcome').hide().fadeIn(3000);
+});
