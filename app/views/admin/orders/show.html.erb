@@ -1,68 +1,85 @@
-<h1>注文履歴詳細</h1>
-<% subtotals = [] %>
-<%= form_for(@order, url:admin_order_path) do |f| %>
+<div class="container">
+  <div class="row">
+    <h3>注文履歴詳細</h3>
+      <% subtotals = [] %>
+      <%= form_for(@order, url:admin_order_path) do |f| %>
+    <table class="table">
+      <tr>
+        <th>購入者</th>
+        <td><%= @order.member.family_name + @order.member.first_name %></td>
+      </tr>
+      <tr>
+        <th>配送先</th>
+        <td><%= @order.postal_code %><%= @order.address %><%= @order.receiver %></td>
+      </tr>
+      <tr>
+        <th>支払い方法</th>
+        <td><% if @order.payment_method = true %>
+          クレジットカード
+            <% else %>
+          銀行振込
+            <% end %></td><%#= f.select :order_status, [["入金待ち","waiting_for_payment"],["入金確認","payment_confirmation"],["製作中","making"],["発送準備中","prepairing_for_shipping"],["発送済み","sent"]] %>
+      </tr>
+      <tr>
+        <th>注文ステータス</th>
+        <td><%= f.select :order_status, options_for_select(Order.order_statuses),{} %><%= f.submit '更新',class: "btn btn-primary"%></td>
+      </tr>
+    </table>
+      <% end %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>購入者</th>
-      <th>配送先</th>
-      <th>支払い方法</th>
-      <th>注文ステータス</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @order.member.family_name + @order.member.first_name %></td>
-      <td><%= @order.postal_code %><%= @order.address %><%= @order.receiver %></td>
-      <td><% if @order.payment_method = true %>クレジットカード
-        　　　<% else %>銀行振込
-        　<% end %></td>
-      <td><%#= f.select :order_status, [["入金待ち","waiting_for_payment"],["入金確認","payment_confirmation"],["製作中","making"],["発送準備中","prepairing_for_shipping"],["発送済み","sent"]] %></td>
-       <td><%= f.select :order_status, options_for_select(Order.order_statuses),{} %></td>
-      <td><%= f.submit '更新',class: "btn btn-primary"%></td>
-    </tr>
-  </tbody>
-</table>
-<% end %>
+    <div class="row">
+      <div class="col-xs-9">
+    <%= form_with(model: @order, url:admin_order_detail_path) do |f| %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>商品名</th>
+              <th>単価（税込）</th>
+              <th>数量</th>
+              <th>小計</th>
+              <th>制作ステータス</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @order.order_products.each do |order_product| %>
+            <%= @order.order_status %>
+            <%= order_product.product_status %>
+            <tr>
+              <td><%= order_product.product.name %></td>
+              <td><%= taxed_price = (order_product.product.non_taxed_price * 1.08).round(0) %></td>
+              <td><%= order_product.quantity %></td>
+              <% subtotal = taxed_price * order_product.quantity %>
+              <td><%= subtotal %></td>
+              <td><%= f.select :product_status, [["着手不可","cannot_start"],["制作待ち","waiting"],["制作中","making"],["制作完了","completed"]] %></td>
+              <td><%= f.submit '更新', class: "btn btn-primary" %></td>
+              <% subtotals.push(subtotal) %>
+            <% end %>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+      </div>
 
-<%= form_with(model: @order, url:admin_order_detail_path) do |usagi| %>
+      <div class="col-xs-3 align-self-end"><!-- align-self-endが適用されない -->
+        <table class="table">
+          <tr>
+            <th>商品合計</th>
+            <td><%= subtotals.sum %></td>
+          </tr>
+          <tr>
+            <th>送料</th>
+            <td><%= postage %></td>
+          </tr>
+          <tr>
+            <th>請求合計金額</th>
+            <td><%= subtotals.sum + postage %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>商品名</th>
-      <th>単価（税込）</th>
-      <th>数量</th>
-      <th>小計</th>
-      <th>制作ステータス</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-    <% @order.order_products.each do |order_product| %>
-    <%= @order.order_status %>
-    <%= order_product.product_status %>
-      <td><%= order_product.product.name %></td>
-      <td><%= taxed_price = (order_product.product.non_taxed_price * 1.08).round(0) %></td>
-      <td><%= order_product.quantity %></td>
-      <% subtotal = taxed_price * order_product.quantity %>
-      <td><%= subtotal %></td>
-      <td><%= usagi.select :product_status, [["着手不可","cannot_start"],["制作待ち","waiting"],["制作中","making"],["制作完了","completed"]] %></td>
-      <td><%= usagi.submit '更新',class: "btn btn_primary" %></td>
-      <% subtotals.push(subtotal) %>
-    <% end %>
-    </tr>
-  </tbody>
-</table>
-<% end %>
 
-<h3>商品合計</h3>
-<%= subtotals.sum %>
-<h3>送料</h3>
-<%= postage %>
-<h3>請求合計金額</h3>
-<%= subtotals.sum + postage %>
 

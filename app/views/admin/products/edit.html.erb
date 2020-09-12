@@ -1,43 +1,46 @@
-<h2>商品編集</h2>
-<%= form_for(@product, url: admin_product_path) do |f| %>
+<div class="container">
+	<div class="row">
+		<h2>商品編集</h2>
+		<%= form_for(@product, url: admin_product_path) do |f| %>
 
-	<% if @product.errors.any? %>
-						<div id="error_explanation">
-							<h3><%= @product.errors.count %>error prohibited this obj from being saved:</h3>
-								<% @product.errors.full_messages.each do |message| %>
-									<%= message %>
-								<% end %>
-						</div>
-					<% end %>
+			<% if @product.errors.any? %>
+				<div id="error_explanation">
+					<h3><%= @product.errors.count %>error prohibited this obj from being saved:</h3>
+						<% @product.errors.full_messages.each do |message| %>
+							<%= message %>
+						<% end %>
+				</div>
+				<% end %>
+			<form class="col-xs-4" >
+				<div class="field">
+					<%= f.attachment_field :image, class: "image" %>
+				</div>
+			</form>
+			<form class="col-xs-5 col-md-offset-5" >
+				<div class="field">
+					<h5>商品名</h5><%= f.text_field :name, class: "name" %>
+				</div>
 
-<div class="field">
+				<div class="field">
+					<h5>商品説明</h5><%= f.text_area :introduction, class: "introduction" %>
+				</div>
 
-	<div class="field">
-		<%= f.attachment_field :image, class: "image" %>
+				<div class="field">
+					<h5>ジャンル</h5><%= f.collection_select(:genre_id, Genre.all, :id, :name ) %><h5>円</h5>
+				</div>
+
+				<div class="field">
+					<h5>税抜き価格</h5><%= f.text_area :non_taxed_price, class: "non_taxed_price" %>
+				</div>
+
+				<div class="field">
+			    <h5>販売ステータス</h5><%= f.select :sale_status, [["販売中",true],["売り切れ",false]] %>
+				</div>
+			</form>
+
+			<div class=" col-xs-3 col-md-offset-9 actions">
+				<%= f.submit '変更を保存', class: "btn btn-primary col-xs-4"  %>
+			</div>
+		<% end %>
 	</div>
-
-	<div class="field">
-		<h5>商品名</h5><%= f.text_field :name, class: "name" %>
-	</div>
-
-	<div class="field">
-		<h5>商品説明</h5><%= f.text_area :introduction, class: "introduction" %>
-	</div>
-
-	<div class="field">
-		<h5>ジャンル</h5><%= f.collection_select(:genre_id, Genre.all, :id, :name ) %><h5>円</h5>
-	</div>
-
-	<div class="field">
-		<h5>税抜き価格</h5><%= f.text_area :non_taxed_price, class: "non_taxed_price" %>
-	</div>
-
-	<div class="field">
-    <h5>販売ステータス</h5><%= f.select :sale_status, [["販売中",true],["売り切れ",false]] %>
-	</div>
-
-	<div class="actions">
-		<%= f.submit "変更を保存" %>
-	</div>
-
-<% end %>
+</div>
