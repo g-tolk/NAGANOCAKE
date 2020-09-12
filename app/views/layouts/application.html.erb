@@ -10,46 +10,46 @@
   </head>
 
   <body>
-<header>
+<header class="navbar-default">
         <div class = "container" >
             <div class = "row">
                 <div class = "col-xl-4">
                     <div class = "title">
-                            <ul class="nav navbar-nav navbar-life">
-                            <li><font size= "5" > NAGANOCAKE</font></li>
+                        <ul class="nav navbar-nav navbar-life">
+                          <li><font size= "5" > NAGANOCAKE</font></li>
                         </ul>
                     </div>
                 </div>
 
               <% if member_signed_in? %>
-                <nav class="nav1 member-after-login">
+                <nav class="nav1 member-after-login navbar-custom">
                     <div class = "col-xl-8">
                       <ul class="nav navbar-nav navbar-right">
                         <li>ようこそ、<%= current_member.family_name %>さん！</li>
-                        <li><%= link_to 'マイページ', member_members_path, class: "btn btn-default" %></li>
-                      <li><%= link_to '商品一覧', member_products_path, class: "btn btn-default" %></li>
-                      <li><%= link_to 'カート', member_cart_products_path, class: "btn btn-default" %></li>
-                      <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete, class: "btn btn-default" %></li>
+                        <li><%= link_to 'マイページ', member_members_path %></li>
+                      <li><%= link_to '商品一覧', member_products_path %></li>
+                      <li><%= link_to 'カート', member_cart_products_path %></li>
+                      <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete %></li>
                     </ul>
                 </div>
                 </nav>
               <% elsif admin_signed_in? %>
-                <nav class="nav1 admin-after-login">
+                <nav class="nav1 admin-after-login navbar-custom">
                   <ul class="nav navbar-nav navbar-right">
-                     <li><%= link_to '商品一覧', admin_products_path, class: "col-xs-1 btn btn-default" %></li>
-                      <li><%= link_to '会員一覧', admin_members_path, class: "col-xs-1 btn btn-default" %></li>
-                      <li><%= link_to '注文履歴一覧', admin_orders_path, class: "col-xs-1 btn btn-default" %></li>
-                       <li><%= link_to 'ジャンル一覧', admin_genres_path, class: "col-xs-1 btn btn-default" %></li>
-                      <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "col-xs-1 btn btn-default" %></li>
+                     <li><%= link_to '商品一覧', admin_products_path %></li>
+                      <li><%= link_to '会員一覧', admin_members_path %></li>
+                      <li><%= link_to '注文履歴一覧', admin_orders_path %></li>
+                       <li><%= link_to 'ジャンル一覧', admin_genres_path %></li>
+                      <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
                   </ul>
                 </nav>
               <% else %>
-                <nav class="nav1 member-before-login">
+                <nav class="nav1 member-before-login navbar-custom">
                   <ul class="nav navbar-nav navbar-right">
-                    <li><%= link_to 'About', member_products_about_path, class: "col-xs-1 btn btn-default" %></li>
-                    <li><%= link_to '商品一覧', member_products_path, class: "col-xs-1 btn btn-default" %></li>
-                    <li><%= link_to '新規登録', new_member_registration_path, class: "col-xs-1 btn btn-default" %></li>
-                    <li><%= link_to 'ログイン', new_member_session_path, class: "col-xs-1 btn btn-default" %></li>
+                    <li><%= link_to 'About', member_products_about_path %></li>
+                    <li><%= link_to '商品一覧', member_products_path %></li>
+                    <li><%= link_to '新規登録', new_member_registration_path %></li>
+                    <li><%= link_to 'ログイン', new_member_session_path %></li>
                   </ul>
                 </nav>
             </div>
@@ -65,8 +65,8 @@
       <%= yield %>
     </div>
 
-    <div class="footer">
-    </div>
+<footer>
+</footer>
 
   </body>
 </html>
