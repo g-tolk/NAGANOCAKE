@@ -2,54 +2,53 @@
 
 <%= form_with(model: @order, local: true, url: member_orders_path) do |f| %>
 
-<div class="d-none d-lg-block space">
-  <div class="row">
-    <div class="col-lg-5"><h4>商品名</h4></div>
-    <div class="col-lg-2"><h4>単価（税込）</h4></div>
-    <div class="col-lg-2"><h4>数量</h4></div>
-    <div class="col-lg-2"><h4>小計</h4></div>
+<div class="row">
+  <div class="col-xs-7">
+    <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="active">商品名</th>
+              <th class="active">単価（税込)</th>
+              <th class="active">数量</th>
+              <th class="active">小計</th>
+            </tr>
+          </thead>
+            <% sum = 0 %>
+            <% @cart_products.each do |cart_product| %>
+            <tbody>
+              <tr>
+                <td>
+                  <%= attachment_image_tag(cart_product.product, :image, :fill, 100, 100) %>
+                  <%= cart_product.product.name %>
+                </td>
+                <td><%= price_included_tax(cart_product.product.non_taxed_price) %></td>
+                <td><%= cart_product.quantity %></td>
+                <td><%= sub_total(cart_product.product.non_taxed_price,cart_product.quantity) %></td>
+              </tr>
+            </tbody>
+            <% sum += sub_total(cart_product.product.non_taxed_price,cart_product.quantity) %>
+            <% end %>
+    </table>
   </div>
-</div>
 
-<% sum = 0 %>
-<% @cart_products.each do |cart_product| %>
-<div class="row space-sm">
-  <div class="col-lg-3">
-    <%= attachment_image_tag(cart_product.product, :image, :fill, 100, 100) %>
-  </div>
-  <div class="col-lg-2">
-    <%= cart_product.product.name %>
-  </div>
-  <div class="col-lg-2">
-    <%= price_included_tax(cart_product.product.non_taxed_price) %>
-  </div>
-  <div class="col-lg-2">
-    <%= cart_product.quantity %>
-  </div>
-  <div class="col-lg-2">
-  <%= sub_total(cart_product.product.non_taxed_price,cart_product.quantity) %>
-  </div>
-</div>
-<% sum += sub_total(cart_product.product.non_taxed_price,cart_product.quantity) %>
-<% end %>
+  <div class="col-xs-4">
+    <table class="table table-bordered">
+      <tr>
+        <th class="active">送料</th>
+        <td><%= postage %></td>
+      </tr>
 
+      <tr>
+        <th class="active">商品合計</th>
+        <td><%= sum %></td>
+      </tr>
 
-<div class="col-xs-1">
-</div>
-<div class="table col-xs-5">
-<tr>
-  	<th>送料</th>
-  	<th><%= postage %></th>
-  </tr>
-  <tr>
-  	<th>商品合計</th>
-  	<th><%= sum %></th>
-  </tr>
-  <tr>
-  	<th>請求金額</th>
-  	<th><%= payment_amount = postage + sum %> </th>
-  </tr>
-</table>
+      <tr>
+        <th class="active">請求金額</th>
+        <td><%= payment_amount = postage + sum %></td>
+      </tr>
+    </table>
+  </div>
 </div>
 
 <h2><strong>支払方法</strong></h2>
