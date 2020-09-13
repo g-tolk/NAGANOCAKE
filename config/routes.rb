@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   namespace :member,path:'' do
   	resources :members, only: [:edit,:update]
+    get '/products/about' => 'products#about'
     get '/members' => 'members#show'
   	get '/members/unsubscribe' => 'members#unsubscribe'
   	patch '/members/:id/withdraw' => 'members#withdraw'
@@ -33,13 +34,12 @@ Rails.application.routes.draw do
     get 'orders/complete' => 'orders#complete'
     post 'orders/confirm' => 'orders#confirm'
     resources :products, only: [:index,:show]
-    get 'products/top' => 'products#top'
-    get '/products/about' => 'products#about'
     resources :cart_products, only: [:index,:update,:create,:destroy] do
     collection do
     delete 'cart_products/destroy_all'
     end
     end
+
   end
 
 
