@@ -32,16 +32,16 @@ Rails.application.routes.draw do
     resources :orders, only: [:show,:edit,:new,:create,:index]
     get 'orders/complete' => 'orders#complete'
     post 'orders/confirm' => 'orders#confirm'
+    resources :products, only: [:index,:show]
+    get 'products/top' => 'products#top'
+    get '/products/about' => 'products#about'
     resources :cart_products, only: [:index,:update,:create,:destroy] do
     collection do
     delete 'cart_products/destroy_all'
     end
+    end
   end
 
-    resources :products, only: [:index,:show]
-    get 'products/top' => 'products#top'
-    get '/products/about' => 'products#about'
-  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

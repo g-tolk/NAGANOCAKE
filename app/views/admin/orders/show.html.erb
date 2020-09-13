@@ -44,13 +44,13 @@
             <% @order.order_products.each do |order_product| %>
             <%= @order.order_status %>
             <%= order_product.product_status %>
-              <%= form_with(model: order_product, local: true, url:admin_order_detail_path) do |f| %>
+              <%= form_with(model: order_product, local: true, url:admin_order_detail_path(order_product.id)) do |f| %>
                 <tr>
-                  <td><%= order_product.product.name %></td>
+                  <td><%= order_product.product.name %><%= order_product.id %></td>
                   <td><%= taxed_price = (order_product.product.non_taxed_price * 1.08).round(0) %></td>
                   <td><%= order_product.quantity %></td>
                   <td><% subtotal = taxed_price * order_product.quantity %><%= subtotal %></td>
-                  <td><%= f.select :product_status, OrderProduct.product_statuses.keys.to_a %><%#= f.select :product_status, options_for_select(order_product.product_statuses.keys.to_a, order_product.product_status) %></td>
+                  <td><%= f.select :product_status, OrderProduct.product_statuses.keys.to_a %></td>
                   <td><%= f.submit '更新', class: "btn btn-primary" %></td>
                   <% subtotals.push(subtotal) %>
                 </tr>
