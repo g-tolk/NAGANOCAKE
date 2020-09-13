@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   namespace :member,path:'' do
   	resources :members, only: [:edit,:update]
     get '/products/about' => 'products#about'
+    resources :products, only: [:index,:show]
     get '/members' => 'members#show'
   	get '/members/unsubscribe' => 'members#unsubscribe'
   	patch '/members/:id/withdraw' => 'members#withdraw'
@@ -39,11 +40,6 @@ Rails.application.routes.draw do
     delete 'cart_products/destroy_all'
     end
     end
-
-  end
-
-    get 'products/about' => 'products#about'
-    resources :products, only: [:index,:show]
   end
 
 
