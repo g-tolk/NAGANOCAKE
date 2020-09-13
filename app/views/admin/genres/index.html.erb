@@ -11,12 +11,12 @@
                     <%= message %>
                   <% end %>
               </div>
-            <% end %>
+       <% end %>
 
-      <%= f.text_field :name %>
-      <label><%= f.radio_button :valid_status, true,{:checked => true} %>有効</label>
-      <label><%= f.radio_button :valid_status, false%>無効</label>
-      <%= f.submit '追加',class:"btn btn-primary" %>
+        <%= f.text_field :name %>
+        <label><%= f.radio_button :valid_status, true,{:checked => true} %>有効</label>
+        <label><%= f.radio_button :valid_status, false%>無効</label>
+        <%= f.submit '追加',class:"btn btn-primary" %>
 
       <% end %>
 
