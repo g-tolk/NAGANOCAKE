@@ -65,8 +65,8 @@ class Member::OrdersController < ApplicationController
       end
       render 'complete'
     else
-      redirect_to root_path
-　　　flash[:danger] = 'カートが空です。'
+      flash[:danger] = 'カートが空です。'
+      redirect_to member_products_path
     end
   end
 

@@ -13,11 +13,10 @@ class Admin::OrderDetailsController < ApplicationController
     	 	total += 1
     	 end
     end
-     binding.pry
     if order_product.order.order_products.count == total
        order_product.order.update(order_status: 3)
     end
-    redirect_to admin_order_path(order_product)
+    redirect_to admin_order_path(order_product.order.id)
     #redirect_to admin_order_path(order)
   end
 
