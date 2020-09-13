@@ -1,4 +1,7 @@
 class Admin::OrdersController < ApplicationController
+before_action :authenticate_admin!
+before_action :ensure_correct_admin
+
   def index
     @orders = Order.all
   end
@@ -24,5 +27,12 @@ class Admin::OrdersController < ApplicationController
 
   def order_params
   params.require(:order).permit(:order_status)
+  end
+
+  def ensure_correct_admin
+    @admin = Admin.find(params[:id])
+    unless @admin == current_admin
+      redirect_to root_path
+    end
   end
 end

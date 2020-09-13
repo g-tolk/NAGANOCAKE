@@ -1,4 +1,7 @@
 class Admin::GenresController < ApplicationController
+before_action :authenticate_admin!
+before_action :ensure_correct_admin
+
   def index
     @genre = Genre.new
     @genres = Genre.all
@@ -24,5 +27,12 @@ class Admin::GenresController < ApplicationController
 
   def genre_params
     params.require(:genre).permit(:name, :valid_status)
+  end
+
+  def ensure_correct_admin
+    @admin = Admin.find(params[:id])
+    unless @admin == current_admin
+      redirect_to root_path
+    end
   end
 end

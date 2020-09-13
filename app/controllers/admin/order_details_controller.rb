@@ -1,4 +1,7 @@
 class Admin::OrderDetailsController < ApplicationController
+before_action :authenticate_admin!
+before_action :ensure_correct_admin
+
   def update
      order_product = OrderProduct.find(params[:id])
      order_product.update(order_product_params)
@@ -25,5 +28,13 @@ class Admin::OrderDetailsController < ApplicationController
   def order_product_params
   params.require(:order_product).permit(:product_status)
   end
+
+  def ensure_correct_admin
+    @admin = Admin.find(params[:id])
+    unless @admin == current_admin
+      redirect_to root_path
+    end
+  end
+
 end
 

@@ -1,6 +1,6 @@
 class Member::CartProductsController < ApplicationController
 before_action :authenticate_member!
-before_action :authenticate_member
+before_action :ensure_correct_member
 
   def index
     @cart_products = CartProduct.where(member_id:current_member.id)
