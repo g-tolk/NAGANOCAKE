@@ -16,6 +16,10 @@ class Admin::OrdersController < ApplicationController
     redirect_to admin_order_path(order)
   end
 
+  def top
+    @orders = Order.all
+  end
+
   private
 
   def order_params
