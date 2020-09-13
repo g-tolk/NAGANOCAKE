@@ -1,94 +1,88 @@
-
-	<div class="main-visual">
-		<div class="welcome">
-			<p class="welcome-text">美味しいケーキが<br><span class="you">あなた</span>を至福のひと時へ</p>
-		</div>
-	</div>
-	<div class="container">
-	<div class="row">
-		<div class="col-xs-12 text">
-			<h3>ようこそ、NaganoCakeへ！</h3>
-				<p>このサイトは、ケーキ販売のECサイトになります。<br>
-				会員でない方も商品の閲覧はできますが、<br>
-				購入には会員登録が必要になります。</p>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-2">
-		</div>
-		<div class="col-xs-2 genre">
-
-			<h3>ジャンル検索</h3>
-  				<%= render "member/shared/member_genres", genres: @genres %>
-		</div>
-		<div class="col-xs-2">
-		</div>
-		<div class="col-xs-6 cohi">
-		</div>
-	</div>
-		<h3 class="s1">オススメ商品一覧</h3>
-			<div class="row recommend">
-				<div class="col-xs-1">
-				</div>
-				<div class="col-xs-2">
-					<%= image_tag 'tamagopurin.jpg', :size => '180x130' %>
-					<p class="only">店員人気No1</p>
-					<p class="big">まるごと<br>たまごプリン</p>
-				</div>
-				<div class="col-xs-2">
-					<%= image_tag 'kabotya.jpg', :size => '180x130' %>
-					<p class="only">保存料無使用</p>
-					<p class="big">まるごと<br>かぼちゃプリン</p>
-				</div>
-				<div class="col-xs-2">
-					<%= image_tag 'itigo.jpg', :size => '180x130' %>
-					<p class="only">とちおとめ使用</p>
-					<p class="big">いちごの<br>ショートケーキ</p>
-				</div>
-				<div class="col-xs-2">
-					<%= image_tag 'panda.jpg', :size => '180x130' %>
-					<p class="only">贈答品に最適</p>
-					<p class="big">パンダ<br>ロールケーキ</p>
-				</div>
-				<div class="col-xs-2">
-					<%= image_tag 'mu-su.jpg', :size => '180x130' %>
-					<p class="only">楽天人気No1</p>
-					<p class="big">ババロア</p>
-				</div>
-				<div class="col-xs-1">
-				</div>
-			</div>
-			<div class="row recommend">
-				<div class="col-xs-1">
-				</div>
-				<div class="col-xs-2">
-					<%= image_tag 'aoke-ki.jpg', :size => '180x130' %>
-					<p class="only">着色料無使用</p>
-					<p class="big">青いケーキ</p>
-				</div>
-				<div class="col-xs-2">
-					<%= image_tag 'pancake.jpg', :size => '180x130' %>
-					<p class="only">若い女性に人気</p>
-					<p class="big">パンケーキ</p>
-				</div>
-				<div class="col-xs-2">
-					<%= image_tag 'itigo2.jpg', :size => '180x130' %>
-					<p class="only">いちご尽くし</p>
-					<p class="big">イチゴ<br>クリームケーキ</p>
-				</div>
-				<div class="col-xs-2">
-					<%= image_tag 'meron.jpg', :size => '180x130' %>
-					<p class="only">TVで紹介</p>
-					<p class="big">まるごと<br>メロンケーキ</p>
-				</div>
-				<div class="col-xs-2">
-					<%= image_tag 'painappulu.jpg', :size => '180x130' %>
-					<p class="only">南国気分</p>
-					<p class="big">まるごと<br>パインケーキ</p>
-				</div>
-				<div class="col-xs-1">
-				</div>
-			</div>
-			
+<div class="main-visual">
+	<div class="welcome">
+		<p class="welcome-text">美味しいケーキが<br><span class="you">あなた</span>を至福のひと時へ</p>
 	</div>
 </div>
+<div class="row">
+	<div class="col-xs-12 text">
+		<h3>ようこそ、NaganoCakeへ！</h3>
+			<p>このサイトは、ケーキ販売のECサイトになります。<br>
+			会員でない方も商品の閲覧はできますが、<br>
+			購入には会員登録が必要になります。</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-2">
+	</div>
+	<div class="col-xs-2 genre">
+		<h3>ジャンル検索</h3>
+  			<%= render "member/shared/member_genres", genres: @genres %>
+	</div>
+	<div class="col-xs-2">
+	</div>
+	<div class="col-xs-6 cohi">
+	</div>
+</div>
+<h3 class="s1">オススメ商品一覧</h3>
+	<div class="row recommend">
+		<div class="col-xs-1">
+		</div>
+		<div class="col-xs-2">
+			<%= image_tag 'tamagopurin.jpg', :size => '180x130' %>
+			<p class="only">店員人気No1</p>
+			<p class="big">まるごと<br>たまごプリン</p>
+		</div>
+		<div class="col-xs-2">
+			<%= image_tag 'kabotya.jpg', :size => '180x130' %>
+			<p class="only">保存料無使用</p>
+			<p class="big">まるごと<br>かぼちゃプリン</p>
+		</div>
+		<div class="col-xs-2">
+			<%= image_tag 'itigo.jpg', :size => '180x130' %>
+			<p class="only">とちおとめ使用</p>
+			<p class="big">いちごの<br>ショートケーキ</p>
+		</div>
+		<div class="col-xs-2">
+			<%= image_tag 'panda.jpg', :size => '180x130' %>
+			<p class="only">贈答品に最適</p>
+			<p class="big">パンダ<br>ロールケーキ</p>
+		</div>
+		<div class="col-xs-2">
+			<%= image_tag 'mu-su.jpg', :size => '180x130' %>
+			<p class="only">楽天人気No1</p>
+			<p class="big">ババロア</p>
+		</div>
+		<div class="col-xs-1">
+		</div>
+	</div>
+	<div class="row recommend">
+		<div class="col-xs-1">
+		</div>
+		<div class="col-xs-2">
+			<%= image_tag 'aoke-ki.jpg', :size => '180x130' %>
+			<p class="only">着色料無使用</p>
+			<p class="big">青いケーキ</p>
+		</div>
+		<div class="col-xs-2">
+			<%= image_tag 'pancake.jpg', :size => '180x130' %>
+			<p class="only">若い女性に人気</p>
+			<p class="big">パンケーキ</p>
+		</div>
+		<div class="col-xs-2">
+			<%= image_tag 'itigo2.jpg', :size => '180x130' %>
+			<p class="only">いちご尽くし</p>
+			<p class="big">イチゴ<br>クリームケーキ</p>
+		</div>
+		<div class="col-xs-2">
+			<%= image_tag 'meron.jpg', :size => '180x130' %>
+			<p class="only">TVで紹介</p>
+			<p class="big">まるごと<br>メロンケーキ</p>
+		</div>
+		<div class="col-xs-2">
+			<%= image_tag 'painappulu.jpg', :size => '180x130' %>
+			<p class="only">南国気分</p>
+			<p class="big">まるごと<br>パインケーキ</p>
+		</div>
+		<div class="col-xs-1">
+		</div>
+	</div>

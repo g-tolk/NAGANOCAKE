@@ -8,25 +8,24 @@
 	  </ul>
 
 	<div class="row">
-	 <div class="col-xs-2 ">
-	 </div>
-	   <div class="col-xs-4 ">
-	     <%= image_tag attachment_url(@product, :image, :fill, 400, 350, fallback: "no-image-mini.jpg"), size:'400x280'%><br>
-	   </div>
+	 	<div class="col-xs-2 ">
+	 	</div>
+	    <div class="col-xs-4 ">
+	     	<%= image_tag attachment_url(@product, :image, :fill, 400, 350, fallback: "no-image-mini.jpg"), size:'400x280'%><br>
+	    </div>
+	    <div class="col-xs-6">
+	        <strong><%= @product.name %></strong><br>
+	       	<p></p><br>
+		   	<%= @product.introduction %><br>
+		   	<p></p><br>
+		   	<%= price_included_tax (@product.non_taxed_price) %>(税込)
+	       	<p></p><br>
+	    </div>
 
-	     <div class="col-xs-6">
-	       <strong><%= @product.name %></strong><br>
-	       <p></p><br>
-		   <%= @product.introduction %><br>
-		   <p></p><br>
-		   <%= price_included_tax (@product.non_taxed_price) %>(税込)
-	       <p></p><br>
-	     </div>
-
-	<%= form_for(@product_new, url: member_cart_products_path) do |f| %>
-	<%= f.hidden_field :product_id, value: @product.id %>
-	<%= f.number_field :quantity, min: 1 %>
-	<%= f.submit "カートに入れる" %>
-	<% end %>
+		<%= form_for(@product_new, url: member_cart_products_path) do |f| %>
+			<%= f.hidden_field :product_id, value: @product.id %>
+			<%= f.number_field :quantity, min: 1 %>
+			<%= f.submit "カートに入れる" %>
+		<% end %>
 	</div>
 </div>

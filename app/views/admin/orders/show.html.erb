@@ -42,8 +42,6 @@
           </thead>
           <tbody>
             <% @order.order_products.each do |order_product| %>
-            <%= @order.order_status %>
-            <%= order_product.product_status %>
               <%= form_with(model: order_product, local: true, url:admin_order_detail_path(order_product.id)) do |f| %>
                 <tr>
                   <td><%= order_product.product.name %><%= order_product.id %></td>

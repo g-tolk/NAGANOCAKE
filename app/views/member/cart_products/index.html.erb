@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-xs-12">
-<table class="table table-bordered">
+      <table class="table table-bordered">
       <thead>
         <tr>
           <th class="active">商品名</th>
@@ -16,22 +16,23 @@
           <th class="active"></th>
         </tr>
       </thead>
-        <% @sum = 0 %>
-        <% @cart_products.each do |cart_product| %>
-        <tbody>
-          <tr>
-            <td><%= attachment_image_tag(cart_product.product, :image, :fill, 50, 50, fallback: "no-image-mini.jpg")%><%= cart_product.product.name %></td>
-            <td><%= price_included_tax (cart_product.product.non_taxed_price) %></td>
-            <%= form_for(cart_product, url: member_cart_product_path(cart_product.id)) do |f| %>
-            <td><%= f.number_field :quantity, min: 1 %><%= f.submit "変更" %></td>
-            <% end %>
-            <td><%= sub_total(cart_product.product.non_taxed_price,cart_product.quantity) %></td>
-            <td><%= link_to "削除する", member_cart_product_path(cart_product.id), method: :delete, class: "btn btn-danger" %></td>
-            <% @sum += sub_total(cart_product.product.non_taxed_price,cart_product.quantity) %>
-          </tr>
-        </tbody>
-        <% end %>
-</table>
+      <% @sum = 0 %>
+      <% @cart_products.each do |cart_product| %>
+      <tbody>
+        <tr>
+          <td><%= attachment_image_tag(cart_product.product, :image, :fill, 50, 50, fallback: "no-image-mini.jpg")%><%= cart_product.product.name %></td>
+          <td><%= price_included_tax (cart_product.product.non_taxed_price) %></td>
+              <%= form_for(cart_product, url: member_cart_product_path(cart_product.id)) do |f| %>
+          <td><%= f.number_field :quantity, min: 1 %><%= f.submit "変更" %></td>
+              <% end %>
+          <td><%= sub_total(cart_product.product.non_taxed_price,cart_product.quantity) %></td>
+          <td><%= link_to "削除する", member_cart_product_path(cart_product.id), method: :delete, class: "btn btn-danger" %></td>
+              <% @sum += sub_total(cart_product.product.non_taxed_price,cart_product.quantity) %>
+        </tr>
+      </tbody>
+      <% end %>
+      </table>
+    </div>
 </div>
 
 <div class="row col-xs-8">
