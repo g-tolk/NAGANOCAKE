@@ -31,7 +31,7 @@
               <% if member_signed_in? %>
                 <nav class="nav1 member-after-login navbar-custom">
                       <ul class="nav navbar-nav navbar-right">
-                        <li><%= link_to 'マイページ', member_members_path %></li>
+                        <li><%= link_to 'マイページ', member_members_my_page_path %></li>
                         <li><%= link_to '商品一覧', member_products_path %></li>
                         <li><%= link_to 'カート', member_cart_products_path %></li>
                         <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete %></li>

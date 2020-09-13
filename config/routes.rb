@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   	resources :members, only: [:edit,:update]
     get '/products/about' => 'products#about'
     resources :products, only: [:index,:show]
-    get '/members' => 'members#show'
+    get '/members/my_page' => 'members#show'
   	get '/members/unsubscribe' => 'members#unsubscribe'
   	patch '/members/:id/withdraw' => 'members#withdraw'
   	resources :shipping_addresses, except: [:show,:new]

@@ -1,6 +1,6 @@
 class Admin::MembersController < ApplicationController
-before_action :authenticate_admin!
-before_action :ensure_correct_admin
+  before_action :authenticate_admin!
+
 
   def index
   	@members = Member.all
@@ -37,13 +37,6 @@ before_action :ensure_correct_admin
   private
   def member_params
     params.require(:member).permit(:is_withdeawal_status,:family_name, :first_name, :kana_family_name, :kana_first_name, :postal_code, :address, :telephone_number)
-  end
-
-  def ensure_correct_admin
-    @admin = Admin.find(params[:id])
-    unless @admin == current_admin
-      redirect_to root_path
-    end
   end
 
 end

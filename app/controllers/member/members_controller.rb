@@ -1,6 +1,5 @@
 class Member::MembersController < ApplicationController
   before_action :authenticate_member!
-  before_action :ensure_correct_member
 
   def show
     @member = current_member
@@ -17,7 +16,7 @@ class Member::MembersController < ApplicationController
   def update
     @member = Member.find(params[:id])
     if @member.update(member_params)
-      redirect_to member_members_path
+      redirect_to member_members_my_page_path
     else
       render :edit
     end
@@ -38,13 +37,6 @@ class Member::MembersController < ApplicationController
 
   def member_params
     params.require(:member).permit(:is_withdeawal_status,:family_name, :first_name, :kana_family_name, :kana_first_name, :postal_code, :address, :telephone_number)
-  end
-
-  def ensure_correct_member
-    @member = Member.find(params[:id])
-    unless @member == current_member
-      redirect_to root_path
-    end
   end
 
 end
