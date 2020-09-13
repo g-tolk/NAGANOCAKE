@@ -1,4 +1,6 @@
 class Member::ShippingAddressesController < ApplicationController
+before_action :authenticate_member!
+before_action :authenticate_member
 
   def index
   	@address = ShippingAddress.new
@@ -40,6 +42,13 @@ end
   private
   def address_params
   	params.require(:shipping_address).permit(:member_id,:name, :postal_code, :address)
+  end
+
+  def ensure_correct_member
+    @member = Member.find(params[:id])
+    unless @member == current_member
+      redirect_to root_path
+    end
   end
 
 end
