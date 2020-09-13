@@ -1,4 +1,7 @@
 class Admin::ProductsController < ApplicationController
+before_action :authenticate_admin!
+before_action :ensure_correct_admin
+
   def new
     @product = Product.new
   end
@@ -39,5 +42,12 @@ class Admin::ProductsController < ApplicationController
 
   def product_params
   	params.require(:product).permit(:name, :introduction, :genre_id, :non_taxed_price, :image, :sale_status)
+  end
+
+  def ensure_correct_admin
+    @admin = Admin.find(params[:id])
+    unless @admin == current_admin
+      redirect_to root_path
+    end
   end
 end
