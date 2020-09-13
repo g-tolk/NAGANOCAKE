@@ -37,10 +37,8 @@ Rails.application.routes.draw do
     delete 'cart_products/destroy_all'
     end
   end
-
+    get 'products/about' => 'products#about'
     resources :products, only: [:index,:show]
-    get 'products/top' => 'products#top'
-    get '/products/about' => 'products#about'
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
