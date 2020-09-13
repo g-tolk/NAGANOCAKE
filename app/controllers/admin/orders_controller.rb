@@ -1,12 +1,11 @@
 class Admin::OrdersController < ApplicationController
-before_action :authenticate_admin!
-before_action :ensure_correct_admin
-
+ before_action :authenticate_admin!
   def index
     @orders = Order.all
   end
 
   def show
+        binding.pry
     @order = Order.find(params[:id])
   end
 
@@ -29,10 +28,4 @@ before_action :ensure_correct_admin
   params.require(:order).permit(:order_status)
   end
 
-  def ensure_correct_admin
-    @admin = Admin.find(params[:id])
-    unless @admin == current_admin
-      redirect_to root_path
-    end
-  end
 end
