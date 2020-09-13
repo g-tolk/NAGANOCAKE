@@ -1,4 +1,6 @@
 class Member::OrdersController < ApplicationController
+before_action :authenticate_member!
+before_action :authenticate_member
 
   def index#注文履歴一覧
     @orders = current_member.orders
@@ -99,6 +101,13 @@ class Member::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:member_id, :postage, :payment_amount, :payment_method, :order_status, :receiver, :postal_code, :address,
     order_product_attributes: [:order_id, :product_id, :quantity, :non_taxed_price, :product_status])
+  end
+
+  def ensure_correct_member
+    @member = Member.find(params[:id])
+    unless @member == current_member
+      redirect_to root_path
+    end
   end
 end
 

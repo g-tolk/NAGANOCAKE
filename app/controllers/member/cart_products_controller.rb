@@ -1,4 +1,6 @@
 class Member::CartProductsController < ApplicationController
+before_action :authenticate_member!
+before_action :authenticate_member
 
   def index
     @cart_products = CartProduct.where(member_id:current_member.id)
@@ -43,5 +45,12 @@ class Member::CartProductsController < ApplicationController
   private
   def cart_product_params
     params.require(:cart_product).permit(:quantity, :product_id)
+  end
+
+  def ensure_correct_member
+    @member = Member.find(params[:id])
+    unless @member == current_member
+      redirect_to root_path
+    end
   end
 end

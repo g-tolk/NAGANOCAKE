@@ -1,4 +1,6 @@
 class Member::ProductsController < ApplicationController
+
+
   def top
     @genres = Genre.all
   end
