@@ -15,12 +15,12 @@ Rails.application.routes.draw do
   root to: "member/products#top"
 
   namespace :admin do
+    get '/' => "orders#top"
   	resources :orders, only: [:index,:show,:update]
     resources :order_details, only: [:update]
     resources :members, only: [:index,:show,:edit,:update]
     resources :genres, only: [:index,:edit,:update,:create]
     resources :products, except: [:destroy]
-    get '/' => "top#top"
   end
 
   namespace :member,path:'' do
