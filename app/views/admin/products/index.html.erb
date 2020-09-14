@@ -15,7 +15,6 @@
         </tr>
       </thead>
         <% @products.each do |product| %>
-          <% if product.genre.valid_status == true %>
             <tbody>
               <tr>
                 <td><%= product.id %></td>
@@ -24,11 +23,9 @@
                 <td><%= product.genre.name %></td>
                 <td><% if product.sale_status == true %>販売中
                     <% else %>売切れ
-                    <% end %>
-                </td>
+                    <% end %></td>
               </tr>
             </tbody>
-          <% end %>
         <% end %>
      </table>
   </div>
