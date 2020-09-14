@@ -5,5 +5,6 @@ class Product < ApplicationRecord
 	belongs_to :genre
 
 	validates :name, presence: true, uniqueness: true
-  	validates :genre_id, presence: true
+  validates :genre_id, presence: true
+  validates :non_taxed_price, presence: true, numericality: true
 end
