@@ -44,7 +44,7 @@
             <% @order.order_products.each do |order_product| %>
               <%= form_with(model: order_product, local: true, url:admin_order_detail_path(order_product.id)) do |f| %>
                 <tr>
-                  <td><%= order_product.product.name %><%= order_product.id %></td>
+                  <td><%= order_product.product.name %></td>
                   <td><%= taxed_price = (order_product.product.non_taxed_price * 1.08).round(0) %></td>
                   <td><%= order_product.quantity %></td>
                   <td><% subtotal = taxed_price * order_product.quantity %><%= subtotal %></td>

@@ -3,8 +3,8 @@ before_action :authenticate_member!
 
   def index
   	@address = ShippingAddress.new
-    @member = @address.member
-  	@addresses = ShippingAddress.all
+    @member = current_member
+  	@addresses = @member.shipping_addresses
   end
 
 
