@@ -1,7 +1,9 @@
 <nav class= "genre-nav">
   <% genres.each do |genre| %>
-    <ul>
-    	<li><%= link_to genre.name, member_products_path(genre_id: genre.id)%></li>
-    </ul>
+  	<% if genre.valid_status == true %>
+    	<ul>
+    		<li><%= link_to genre.name, member_products_path(genre_id: genre.id)%></li>
+    	</ul>
+    <% end %>
   <% end %>
 </nav>
