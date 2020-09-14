@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protected
   def after_sign_in_path_for(resource)
     if resource == @admin
-      root_path
+      admin_path
     elsif resource == @member
       root_path
     end
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(resource)
     if resource == :admin
-      root_path
+      admin_session_path
     elsif resource == :member
       root_path
     end
