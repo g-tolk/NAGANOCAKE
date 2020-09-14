@@ -11,34 +11,33 @@
 						<% end %>
 				</div>
 			<% end %>
-			<form class="col-xs-4" >
-				<div class="field">
-					<%= f.attachment_field :image, class: "image" %>
-				</div>
-			</form>
-			<form class="col-xs-5 col-md-offset-5" >
-				<div class="field">
-					<h5>商品名</h5><%= f.text_field :name, class: "name" %>
-				</div>
+			<div class="row">
+				<div class="col-xs-2"></div>
+				<div><%= f.attachment_field :image, class: "image" %></div>
+			</div><br>
 
-				<div class="field">
-					<h5>商品説明</h5><%= f.text_area :introduction, class: "introduction" %>
-				</div>
+			<div class="row">
+				<div class="col-xs-2">商品名</div>
+				<div class="col-xs-2"><%= f.text_field :name, class: "name" %></div>
+			</div><br>
+			<div class="row">
+				<div class="col-xs-2">商品説明</div>
+				<div class="col-xs-2"><%= f.text_area :introduction, class: "introduction" %></div>
+			</div><br>
+			<div class="row">
+				<div class="col-xs-2">ジャンル</div>
+				<div class="col-xs-2"><%= f.collection_select(:genre_id, Genre.all, :id, :name ) %></div>
+			</div><br>
+			<div class="row">
+				<div class="col-xs-2">税抜き価格</div>
+				<div class="col-xs-2"><%= f.text_field :non_taxed_price, class: "non_taxed_price" %>円</div>
+			</div><br>
+			<div class="row">
+				<div class="col-xs-2">販売ステータス</div>
+				<div class="col-xs-2"><%= f.select :sale_status, [["販売中",true],["売り切れ",false]] %></div>
+			</div>
 
-				<div class="field">
-					<h5>ジャンル</h5><%= f.collection_select(:genre_id, Genre.all, :id, :name ) %><h5>円</h5>
-				</div>
-
-				<div class="field">
-					<h5>税抜き価格</h5><%= f.text_area :non_taxed_price, class: "non_taxed_price" %>
-				</div>
-
-				<div class="field">
-			    <h5>販売ステータス</h5><%= f.select :sale_status, [["販売中",true],["売り切れ",false]] %>
-				</div>
-			</form>
-
-			<div class=" col-xs-3 col-md-offset-9 actions">
+			<div class=" col-xs-3 col-md-offset-9 ">
 				<%= f.submit '変更を保存', class: "btn btn-primary col-xs-4"  %>
 			</div>
 		<% end %>
