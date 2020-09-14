@@ -1,6 +1,6 @@
 <nav class= "genre-nav">
   <% genres.each do |genre| %>
-  	<% if genre.valid_status == true %>
+  	<% if genre.valid_status == true && genre.products.count != 0 %>
     	<ul>
     		<li><%= link_to genre.name, member_products_path(genre_id: genre.id)%></li>
     	</ul>

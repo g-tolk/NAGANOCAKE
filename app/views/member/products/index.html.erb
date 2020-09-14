@@ -10,7 +10,7 @@
       </tr>
     <tbody>
     <% @genres.each do |genre| %>
-      <% if genre.valid_status == true %>
+      <% if genre.valid_status == true && genre.products.count != 0 %>
         <tr>
           <td><%= link_to genre.name, member_products_path(genre_id: genre.id)%></td>
         </tr>
@@ -30,7 +30,7 @@
         </thead>
         <% if @search_product.present? %>
           <% @search_product.each do |product| %>
-            <% if product.genre.valid_status == true %>
+            <% if product.genre.valid_status == true && product.sale_status == true %>
             <tbody>
               <tr>
                 <td><%= attachment_image_tag(product, :image, :fill, 50, 50, fallback: "no-image-mini.jpg")%></td>
@@ -43,7 +43,7 @@
           <% end %>
         <% else %>
           <% @products.each do |product| %>
-            <% if product.genre.valid_status == true %>
+            <% if product.genre.valid_status == true && product.sale_status == true %>
             <tbody>
               <tr>
                 <td><%= attachment_image_tag(product, :image, :fill, 50, 50, fallback: "no-image-mini.jpg")%></td>
