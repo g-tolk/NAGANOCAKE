@@ -1,5 +1,3 @@
-
-
 <div class="container">
   <div class="row">
     <h2>商品一覧</h2>
@@ -16,19 +14,21 @@
           <th>ステータス</th>
         </tr>
       </thead>
-        <% @products.each do |product| %>
-            <tbody>
-              <tr>
-                <td><%= product.id %></td>
-                <td><%= link_to product.name, admin_product_path(product.id) %></td>
-                <td><%= product.non_taxed_price %></td>
-                <td><%= product.genre.name %></td>
-                <td><% if product.sale_status == true %>販売中
-                    <% else %>売切れ
-                    <% end %></td>
-              </tr>
-            </tbody>
-        <% end %>
+          <% @products.each do |product| %>
+            <% if product.genre.valid_status == true %>
+                  <tbody>
+                      <tr>
+                        <td><%= product.id %></td>
+                        <td><%= link_to product.name, admin_product_path(product.id) %></td>
+                        <td><%= product.non_taxed_price %></td>
+                        <td><%= product.genre.name %></td>
+                        <td><% if product.sale_status == true %>販売中
+                            <% else %>売切れ
+                            <% end %></td>
+                      </tr>
+                  </tbody>
+            <% end %>
+          <% end %>
      </table>
   </div>
 </div>

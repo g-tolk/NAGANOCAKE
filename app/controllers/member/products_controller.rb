@@ -9,7 +9,7 @@ class Member::ProductsController < ApplicationController
   end
 
   def index
-    @search_product = Product.where(genre_id: params[:genre_id])
+    @search_product = Genre.where(genre_id: params[:genre_id])
     @genres = Genre.all
     @products = Product.all
   end
