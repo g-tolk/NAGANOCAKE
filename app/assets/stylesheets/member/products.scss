@@ -2,6 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
 .recommend {
 	margin-top: 70px;
 }
@@ -43,19 +56,6 @@
 .s1:after {
 	margin-left: .4em;
 }
-.only {
-	color: #fff;
-	text-align: center;
-	background-color: #a47a43;
-	font-size: 12px;
-	padding: 3px;
-	margin-top: 20px;
-	width: 100px;
-}
-.big {
-	font-size: 15px;
-	color: #6f4b3e
-}
 .welcome-text {
 	color: #fff;
 	text-align: center;
@@ -80,6 +80,25 @@
 	border-bottom: double 6px #d2b071;
 }
 .recommend-index {
-	padding-left: 150px;
-	padding-right: 150px;
+	padding-left: 85px;
+	padding-right: 85px;
+}
+.list-box {
+	margin: 10px;
+	float: left;
+}
+.list-title {
+	font-size: 15px;
+	color: #6f4b3e;
+	margin-bottom: 30px;
+}
+.list-comment {
+	color: #fff;
+	text-align: center;
+	background-color: #a47a43;
+	font-size: 12px;
+	padding: 3px;
+	margin-top: 10px;
+	width: 100px;
+	margin-bottom: 10px;
 }
