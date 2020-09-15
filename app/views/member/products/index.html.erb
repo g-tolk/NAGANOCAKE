@@ -10,7 +10,7 @@
       </tr>
     <tbody>
     <% @genres.each do |genre| %>
-      <% if genre.valid_status == true && genre.product.sale_status == true %>
+      <% if genre.valid_status == true && genre.products.count != 0 %>
         <tr>
           <td><%= link_to genre.name, member_products_path(genre_id: genre.id)%></td>
         </tr>
